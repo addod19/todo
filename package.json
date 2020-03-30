@@ -23,5 +23,8 @@
     "eslint-plugin-import": "^2.20.1",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "uikit": "^3.3.7"
   }
 }

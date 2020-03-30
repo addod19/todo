@@ -1,19 +1,25 @@
 const Data = (() => {
-  const todo = (title, description, priority = 0, date = new Date(), completed = false) => {
+  const todo = (
+    title,
+    desc = 'No description',
+    priority = 0,
+    date = new Date(),
+    completed = false
+  ) => {
     return {
       title,
-      description,
+      desc,
       priority,
       date,
       completed
-    }
+    };
   };
 
   const project = (title, todos = []) => {
     return {
       title,
       todos
-    }
+    };
   };
 
   return { project, todo };
