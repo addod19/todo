@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("console.log('hello world');\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const Data = (() => {\n  const todo = (title, description, priority = 0, date = new Date(), completed = false) => {\n    return {\n      title,\n      description,\n      priority,\n      date,\n      completed\n    }\n  };\n\n  const project = (title, todos = []) => {\n    return {\n      title,\n      todos\n    }\n\n  };\n\n  return { project, todo };\n})();\n\nconst View = (() => {\n  const render = (project) => {\n    let x = document.getElementById('content');\n    let ul = document.createElement('ul');\n    project.todos.forEach(el => {\n      let f = document.createElement('li');\n      f.innerHTML = el.title;\n      ul.appendChild(f);\n    })\n    x.appendChild(ul);\n  };\n  return { render }\n})();\n\n\nconst Controller = ((ui, data) => {\n  let proj = data.project('My first project');\n  let mytodo = data.todo('Walk the dag', 'Go for our daily walk', 1);\n  let my2nd = data.todo('Garbage', 'Take them out', 1);\n\n  proj.todos.push(mytodo, my2nd);\n\n  ui.render(proj);\n\n})(View, Data);\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
