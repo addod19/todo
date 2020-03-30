@@ -1,7 +1,7 @@
 {
   "name": "todo",
   "version": "1.0.0",
-  "description": "Applying the concepts of Single Responsibility and Tightly Coupled Objects",
+  "description": "Applying the concepts of Single Responsibility and Loosely Coupled Objects",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
@@ -23,5 +23,8 @@
     "eslint-plugin-import": "^2.20.1",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "uikit": "^3.3.7"
   }
 }
