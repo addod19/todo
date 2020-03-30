@@ -1,3 +1,4 @@
+import '../node_modules/uikit';
 import Data from './modules/data';
 
 const View = (() => {
