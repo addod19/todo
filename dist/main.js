@@ -90,10 +90,23 @@
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("const Data = (() => {\n  const todo = (title, description, priority = 0, date = new Date(), completed = false) => {\n    return {\n      title,\n      description,\n      priority,\n      date,\n      completed\n    }\n  };\n\n  const project = (title, todos = []) => {\n    return {\n      title,\n      todos\n    }\n\n  };\n\n  return { project, todo };\n})();\n\nconst View = (() => {\n  const render = (project) => {\n    let x = document.getElementById('content');\n    let ul = document.createElement('ul');\n    project.todos.forEach(el => {\n      let f = document.createElement('li');\n      f.innerHTML = el.title;\n      ul.appendChild(f);\n    })\n    x.appendChild(ul);\n  };\n  return { render }\n})();\n\n\nconst Controller = ((ui, data) => {\n  let proj = data.project('My first project');\n  let mytodo = data.todo('Walk the dag', 'Go for our daily walk', 1);\n  let my2nd = data.todo('Garbage', 'Take them out', 1);\n\n  proj.todos.push(mytodo, my2nd);\n\n  ui.render(proj);\n\n})(View, Data);\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/data */ \"./src/modules/data.js\");\n\n\nconst View = (() => {\n  const render = (project) => {\n    let x = document.getElementById('content');\n    let pr = document.createElement('ul');\n\n    let ul = document.createElement('ul');\n    project.todos.forEach(el => {\n      let f = document.createElement('li');\n      f.innerHTML = el.title;\n      ul.appendChild(f);\n    })\n    x.appendChild(ul);\n  };\n\n  return { render }\n})();\n\n\nconst Controller = ((ui, data) => {\n  let proj = data.project('My first project');\n  let mytodo = data.todo('Walk the dag', 'Go for our daily walk', 1);\n  let my2nd = data.todo('Garbage Out', 'Take them out', 1);\n\n  proj.todos.push(mytodo, my2nd);\n\n  ui.render(proj);\n\n  // Get the field input data one for the project of task\n\n  // Add the project or task to the proper structure\n\n  // Display the item to the UI\n\n\n\n})(View, _modules_data__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/modules/data.js":
+/*!*****************************!*\
+  !*** ./src/modules/data.js ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nconst Data = (() => {\n  const todo = (title, description, priority = 0, date = new Date(), completed = false) => {\n    return {\n      title,\n      description,\n      priority,\n      date,\n      completed\n    }\n  };\n\n  const project = (title, todos = []) => {\n    return {\n      title,\n      todos\n    }\n  };\n\n  return { project, todo };\n})();\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Data);\n\n//# sourceURL=webpack:///./src/modules/data.js?");
 
 /***/ })
 

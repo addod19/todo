@@ -1,28 +1,10 @@
-const Data = (() => {
-  const todo = (title, description, priority = 0, date = new Date(), completed = false) => {
-    return {
-      title,
-      description,
-      priority,
-      date,
-      completed
-    }
-  };
-
-  const project = (title, todos = []) => {
-    return {
-      title,
-      todos
-    }
-
-  };
-
-  return { project, todo };
-})();
+import Data from './modules/data';
 
 const View = (() => {
   const render = (project) => {
     let x = document.getElementById('content');
+    let pr = document.createElement('ul');
+
     let ul = document.createElement('ul');
     project.todos.forEach(el => {
       let f = document.createElement('li');
@@ -31,6 +13,7 @@ const View = (() => {
     })
     x.appendChild(ul);
   };
+
   return { render }
 })();
 
@@ -38,11 +21,19 @@ const View = (() => {
 const Controller = ((ui, data) => {
   let proj = data.project('My first project');
   let mytodo = data.todo('Walk the dag', 'Go for our daily walk', 1);
-  let my2nd = data.todo('Garbage', 'Take them out', 1);
+  let my2nd = data.todo('Garbage Out', 'Take them out', 1);
 
   proj.todos.push(mytodo, my2nd);
 
   ui.render(proj);
+
+  // Get the field input data one for the project of task
+
+  // Add the project or task to the proper structure
+
+  // Display the item to the UI
+
+
 
 })(View, Data);
 
