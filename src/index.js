@@ -1,6 +1,6 @@
 import '../node_modules/uikit';
 import Data from './modules/data';
-// import '../dist/css/main.css';
+import '../dist/css/main.css';
 
 const View = (() => {
   const render = project => {
@@ -12,8 +12,7 @@ const View = (() => {
       f.innerHTML = el.title;
       ul.appendChild(f);
     });
-    console.log(x, ul);
-    // x.appendChild(ul)
+    // console.log(x, ul);
     x.appendChild(ul);
   };
 
@@ -24,7 +23,7 @@ const Controller = ((ui, data) => {
   let proj = data.project('My first project');
 
   const mytodos = [
-    `<span uk-icon="icon: check"></span>Walk the dog <a href="" class="uk-align-right" uk-icon="icon: trash"></a>`,
+    `<span uk-icon="icon: check"></span> Walk the dog <a href="" class="uk-align-right" uk-icon="icon: trash"></a>`,
     `Go for our daily exercise <a href="" class="uk-align-right" uk-icon="icon: trash"></a>`,
     `<span uk-icon="icon: check"></span>Garbage Out today <a href="" class="uk-align-right" uk-icon="icon: trash"></a>`,
     'Wash the car <a href="" class="uk-align-right" uk-icon="icon: trash"></a>',
