@@ -22,10 +22,7 @@ const Data = (() => {
     };
   };
 
-  const projectList = () => {
-    let pl = {};
-    return { pl };
-  };
+  const projectList = () => ({});
 
   return { project, todo, projectList };
 })();
