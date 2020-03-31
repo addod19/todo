@@ -1,6 +1,6 @@
 import '../node_modules/uikit';
 import Data from './modules/data';
-import '../dist/css/main.css';
+// import '../dist/css/main.css';
 
 const View = (() => {
   const render = project => {
@@ -24,12 +24,11 @@ const Controller = ((ui, data) => {
   let proj = data.project('My first project');
 
   const mytodos = [
-    'Walk the dog',
-    'Go for our daily exercise',
-    'Garbage Out today',
-    'Wash the car',
-    'Take kids to school',
-    'Talk to Daniel about the design'
+    `<span uk-icon="icon: check"></span>Walk the dog <a href="" class="uk-align-right" uk-icon="icon: trash"></a>`,
+    `Go for our daily exercise <a href="" class="uk-align-right" uk-icon="icon: trash"></a>`,
+    `<span uk-icon="icon: check"></span>Garbage Out today <a href="" class="uk-align-right" uk-icon="icon: trash"></a>`,
+    'Wash the car <a href="" class="uk-align-right" uk-icon="icon: trash"></a>',
+    `<span uk-icon="icon: check"></span>Take kids to school <a href="" class="uk-align-right" uk-icon="icon: trash"></a>`
   ];
 
   mytodos.forEach(el => {
