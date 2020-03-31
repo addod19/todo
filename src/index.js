@@ -1,15 +1,19 @@
 import '../node_modules/uikit';
 import Data from './modules/data';
+import '../dist/css/main.css';
 
 const View = (() => {
   const render = project => {
-    let x = document.getElementById('content');
+    let x = document.getElementById('list');
     let ul = document.createElement('ul');
+    ul.classList.add('uk-text-normal', 'uk-list', 'uk-list-striped');
     project.todos.forEach(el => {
       let f = document.createElement('li');
       f.innerHTML = el.title;
       ul.appendChild(f);
     });
+    console.log(x, ul);
+    // x.appendChild(ul)
     x.appendChild(ul);
   };
 
@@ -18,10 +22,21 @@ const View = (() => {
 
 const Controller = ((ui, data) => {
   let proj = data.project('My first project');
-  let mytodo = data.todo('Walk the dag', 'Go for our daily walk', 1);
-  let my2nd = data.todo('Garbage Out today', 'Take them out', 1);
 
-  proj.todos.push(mytodo, my2nd);
+  const mytodos = [
+    'Walk the dog',
+    'Go for our daily exercise',
+    'Garbage Out today',
+    'Wash the car',
+    'Take kids to school'
+  ];
+
+  mytodos.forEach(el => {
+    let td = data.todo(el);
+    proj.todos.push(td);
+  });
+
+  // proj.todos.push(...mytodos);
 
   ui.render(proj);
 
