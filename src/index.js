@@ -1,6 +1,6 @@
 import '../node_modules/uikit';
 import Data from './modules/data';
-// import '../dist/css/main.css';
+import '../dist/css/main.css';
 
 const View = (() => {
   const render = project => {
