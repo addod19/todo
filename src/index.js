@@ -23,11 +23,11 @@ const Controller = ((ui, data) => {
   let proj = data.project('My first project');
 
   const mytodos = [
-    `<span uk-icon="icon: check"></span> Walk the dog <a href="" class="uk-align-right" uk-icon="icon: trash"></a>`,
-    `Go for our daily exercise <a href="" class="uk-align-right" uk-icon="icon: trash"></a>`,
-    `<span uk-icon="icon: check"></span>Garbage Out today <a href="" class="uk-align-right" uk-icon="icon: trash"></a>`,
-    'Wash the car <a href="" class="uk-align-right" uk-icon="icon: trash"></a>',
-    `<span uk-icon="icon: check"></span>Take kids to school <a href="" class="uk-align-right" uk-icon="icon: trash"></a>`
+    `<input class="uk-checkbox" type="checkbox"> Walk the dog <a href="" class="uk-align-right" uk-icon="icon: trash"></a>`,
+    `<input class="uk-checkbox" type="checkbox"> Go for our daily exercise <a href="" class="uk-align-right" uk-icon="icon: trash"></a>`,
+    `<input class="uk-checkbox" type="checkbox"></span> Garbage Out today <a href="" class="uk-align-right" uk-icon="icon: trash"></a>`,
+    '<input class="uk-checkbox" type="checkbox"> Wash the car <a href="" class="uk-align-right" uk-icon="icon: trash"></a>',
+    `<input class="uk-checkbox" type="checkbox"> Take kids to school <a href="" class="uk-align-right" uk-icon="icon: trash"></a>`
   ];
 
   mytodos.forEach(el => {
