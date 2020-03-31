@@ -1,2 +1,2 @@
 # todo
-Applying the concepts of Single Responsibility and Tightly Coupled Objects
+Applying the concepts of Single Responsibility and Loosely Coupled Objects
