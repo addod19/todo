@@ -5,6 +5,7 @@ import Data from './modules/data';
 const View = (() => {
   const render = project => {
     let x = document.getElementById('list');
+    let y = document.getElementById('projects');
     let ul = document.createElement('ul');
     ul.classList.add('uk-text-normal', 'uk-list', 'uk-list-striped');
     project.todos.forEach(el => {
@@ -13,7 +14,10 @@ const View = (() => {
       ul.appendChild(f);
     });
     console.log(x, ul);
+
+    
     // x.appendChild(ul)
+    y.appendChild();
     x.appendChild(ul);
   };
 
@@ -22,6 +26,7 @@ const View = (() => {
 
 const Controller = ((ui, data) => {
   let proj = data.project('My first project');
+  let prj = data.project('Dummy project');
 
   const mytodos = [
     `<input class="uk-checkbox" type="checkbox">Walk the dog <a href="" class="uk-align-right" uk-icon="icon: trash"></a>`,
@@ -36,8 +41,18 @@ const Controller = ((ui, data) => {
     proj.todos.push(td);
   });
 
+  const myprojects = [
+    `project 1`,
+    `project 2`
+  ];
+
+  myprojects.forEach(pr => {
+    let pro = data.project(pr);
+    prj.todos.push(pro);
+  })
   // proj.todos.push(...mytodos);
 
+  ui.render(prj);
   ui.render(proj);
 
   // Get the field input data one for the project of task
