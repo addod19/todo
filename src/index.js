@@ -12,28 +12,22 @@ const View = (() => {
       f.innerHTML = el.title;
       ul.appendChild(f);
     });
-    // console.log(x, ul);
     x.appendChild(ul);
   };
 
   const renderProjects = pList => {
     let projects = Object.keys(pList);
-    console.log(projects);
-    // let x = document.getElementById('projects');
-    // let ul = document.createElement('ul');
-    // ul.classList.add('uk-text-normal', 'uk-list', 'uk-list-striped');
-    // for (let project in pList) {
-    //   let f = document.createElement('li');
-    //   f.innerHTML = project;
-    //   project.
-    // }
-    // pList.forEach(el => {
-    //   let f = document.createElement('li');
-    //   f.innerHTML = el.title;
-    //   ul.appendChild(f);
-    // });
-    // // console.log(x, ul);
-    // x.appendChild(ul);
+    let x = document.getElementById('projects');
+    let ul = document.createElement('ul');
+    ul.classList.add('uk-text-normal', 'uk-list', 'uk-list-striped');
+    projects.forEach(project => {
+      let f = document.createElement('li');
+      f.innerHTML = project;
+
+      ul.appendChild(f);
+    });
+
+    x.appendChild(ul);
   };
 
   return { render, renderProjects };
@@ -41,11 +35,10 @@ const View = (() => {
 
 const Controller = ((ui, data) => {
   let myProjects = data.projectList();
-  console.log(myProjects);
   let proj = data.project('My first project');
-  // console.log(proj);
-  myProjects[proj.title] = proj.title;
 
+  myProjects[proj.title] = proj;
+  console.log(myProjects);
   ui.renderProjects(myProjects);
 
   const mytodos = [
