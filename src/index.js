@@ -28,7 +28,8 @@ const Controller = ((ui, data) => {
     'Go for our daily exercise',
     'Garbage Out today',
     'Wash the car',
-    'Take kids to school'
+    'Take kids to school',
+    'Talk to Daniel about the design'
   ];
 
   mytodos.forEach(el => {
