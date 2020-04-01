@@ -48,24 +48,49 @@
             class="uk-card uk-card-default uk-card-body uk-text-bold"
             id="list"
           >
-            Selected project name <a href="" class="uk-align-right" uk-icon="icon: plus-circle" id="toggle"></a>
+            Selected project name
+            <a
+              href=""
+              class="uk-align-right"
+              uk-icon="icon: plus-circle"
+              id="toggle"
+            ></a>
             <div class="toggle-form" id="toggle-form">
               <form class="uk-grid-small" uk-grid>
                 <div class="uk-width-2-5">
-                  <input class="uk-input" type="text" placeholder="title">
+                  <input
+                    class="uk-input"
+                    type="text"
+                    placeholder="title"
+                    id="title"
+                  />
                 </div>
                 <div class="uk-width-2-5">
-                  <input class="uk-input" type="text" placeholder="description">
+                  <input
+                    class="uk-input"
+                    type="text"
+                    placeholder="description"
+                    id="desc"
+                  />
                 </div>
                 <div class="uk-width-1-5">
-                  <input type="date" class="uk-input" >
+                  <input type="date" class="uk-input" id="date" />
                 </div>
-                <button class="uk-button uk-button-success uk-width-1-4 uk-align-left">Submit</button>
-                <button class="uk-button uk-button-success uk-width-1-4 uk-align-right">Cancel</button>
+                <button
+                  class="uk-button uk-button-success uk-width-1-4 uk-align-left"
+                  id="submit"
+                >
+                  Submit
+                </button>
+                <button
+                  class="uk-button uk-button-success uk-width-1-4 uk-align-right"
+                >
+                  Cancel
+                </button>
               </form>
             </div>
+            <ul></ul>
           </div>
-          
         </div>
       </div>
     </div>

@@ -4,9 +4,15 @@ import '../dist/css/main.css';
 
 const View = (() => {
   const render = project => {
+    // first remove the old list
+    let parent = document.getElementById('list');
+    let child = parent.getElementsByTagName('ul');
+    parent.removeChild(child[0]);
+    // then render the new one
     let x = document.getElementById('list');
     let ul = document.createElement('ul');
     ul.classList.add('uk-text-normal', 'uk-list', 'uk-list-striped');
+
     project.todos.forEach(el => {
       let f = document.createElement('li');
       f.innerHTML = `<input class="uk-checkbox" type="checkbox"> ${el.title}<a href="" class="uk-align-right" uk-icon="icon: trash"></a>`;
@@ -41,7 +47,19 @@ const View = (() => {
     }
   };
 
-  return { render, renderProjects, toggleForm };
+  const readInput = () => {
+    const title = document.getElementById('title');
+    const desc = document.getElementById('desc');
+    const date = document.getElementById('date');
+    let todo = {
+      title: title.value,
+      desc: desc.value,
+      date: date.value
+    };
+    return todo;
+  };
+
+  return { render, renderProjects, toggleForm, readInput };
 })();
 
 const Controller = ((ui, data) => {
@@ -64,9 +82,17 @@ const Controller = ((ui, data) => {
     proj.todos.push(td);
   });
 
-  document.getElementById('toggle').addEventListener('click', ui.toggleForm);
+  const getTodo = e => {
+    e.preventDefault();
+    let td = ui.readInput();
+    proj.todos.push(td);
+    ui.toggleForm(event);
+    ui.render(proj);
+  };
 
-  // ui.toggleForm();
+  document.getElementById('toggle').addEventListener('click', ui.toggleForm);
+  document.getElementById('submit').addEventListener('click', getTodo);
+
   ui.render(proj);
 
   // Get the field input data one for the project of task
