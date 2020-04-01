@@ -1,56 +1,119 @@
 import '../node_modules/uikit';
 import Data from './modules/data';
-// import '../dist/css/main.css';
+import '../dist/css/main.css';
 
 const View = (() => {
   const render = project => {
+    // first remove the old list
+    let parent = document.getElementById('list');
+    let child = parent.getElementsByTagName('ul');
+    parent.removeChild(child[0]);
+    // then render the new one
     let x = document.getElementById('list');
     let y = document.getElementById('projects');
     let ul = document.createElement('ul');
     ul.classList.add('uk-text-normal', 'uk-list', 'uk-list-striped');
+
     project.todos.forEach(el => {
       let f = document.createElement('li');
-      f.innerHTML = el.title;
+      f.innerHTML = `<input class="uk-checkbox" type="checkbox"> ${el.title}<a href="" class="uk-align-right" uk-icon="icon: trash"></a>`;
       ul.appendChild(f);
     });
-    console.log(x, ul);
-
-    
-    // x.appendChild(ul)
-    y.appendChild();
     x.appendChild(ul);
   };
 
-  return { render };
+  const renderProjects = pList => {
+    let projects = Object.keys(pList);
+    let x = document.getElementById('projects');
+    let ul = document.createElement('ul');
+    ul.classList.add('uk-text-normal', 'uk-list', 'uk-list-striped');
+    projects.forEach(project => {
+      let f = document.createElement('li');
+      f.innerHTML = project;
+
+      ul.appendChild(f);
+    });
+
+    x.appendChild(ul);
+  };
+
+  const toggleForm = event => {
+    event.preventDefault();
+    let form = document.getElementById('toggle-form');
+    if (form.style.display === '' || form.style.display === 'none') {
+      form.style.display = 'block';
+    } else {
+      form.style.display = 'none';
+    }
+  };
+
+  const toggleProject = event => {
+    event.preventDefault();
+    let form = document.getElementById('showInput');
+    if (form.style.display === '' || form.style.display === 'none') {
+      form.style.display = 'block';
+    } else {
+      form.style.display = 'none';
+    }
+  };
+
+  const readInput = () => {
+    const title = document.getElementById('title');
+    const desc = document.getElementById('desc');
+    const date = document.getElementById('date');
+    let todo = {
+      title: title.value,
+      desc: desc.value,
+      date: date.value
+    };
+    return todo;
+  };
+
+  const clearInputs = () => {
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => { input.value = ''; });
+  };
+  const updateStorage = () => {
+    localStorage.setItem('todos', JSON.stringify(todo));
+  };
+
+  return { render, renderProjects, toggleForm, readInput, updateStorage, clearInputs, toggleProject };
 })();
 
 const Controller = ((ui, data) => {
+  let myProjects = data.projectList();
   let proj = data.project('My first project');
   let prj = data.project('Dummy project');
 
+  myProjects[proj.title] = proj;
+  ui.renderProjects(myProjects);
+
   const mytodos = [
-    `<input class="uk-checkbox" type="checkbox">Walk the dog <a href="" class="uk-align-right" uk-icon="icon: trash"></a>`,
-    `<input class="uk-checkbox" type="checkbox">Go for our daily exercise <a href="" class="uk-align-right" uk-icon="icon: trash"></a>`,
-    `<input class="uk-checkbox" type="checkbox"></span>Garbage Out today <a href="" class="uk-align-right" uk-icon="icon: trash"></a>`,
-    '<input class="uk-checkbox" type="checkbox">Wash the car <a href="" class="uk-align-right" uk-icon="icon: trash"></a>',
-    `<input class="uk-checkbox" type="checkbox">Take kids to school <a href="" class="uk-align-right" uk-icon="icon: trash"></a>`
+    `Walk the dog`,
+    `Go for our daily exercise`,
+    `Garbage Out today`,
+    'Wash the car',
+    `Take kids to schools`
   ];
 
   mytodos.forEach(el => {
     let td = data.todo(el);
     proj.todos.push(td);
+    localStorage.setItem('todos', JSON.stringify(td));
   });
 
-  const myprojects = [
-    `project 1`,
-    `project 2`
-  ];
+  const getTodo = e => {
+    e.preventDefault();
+    let td = ui.readInput();
+    proj.todos.push(td);
+    ui.clearInputs;
+    ui.toggleForm(event);
+    ui.render(proj);
+  };
 
-  myprojects.forEach(pr => {
-    let pro = data.project(pr);
-    prj.todos.push(pro);
-  })
-  // proj.todos.push(...mytodos);
+  document.getElementById('toggle').addEventListener('click', ui.toggleForm);
+  document.getElementById('addProject').addEventListener('click', ui.toggleProject);
+  document.getElementById('submit').addEventListener('click', getTodo);
 
   ui.render(prj);
   ui.render(proj);
