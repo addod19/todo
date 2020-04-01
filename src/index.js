@@ -18,29 +18,33 @@ const View = (() => {
 
   const renderProjects = pList => {
     let projects = Object.keys(pList);
-    console.log(projects);
-    // let x = document.getElementById('projects');
-    // let ul = document.createElement('ul');
-    // ul.classList.add('uk-text-normal', 'uk-list', 'uk-list-striped');
-    // for (let project in pList) {
-    //   let f = document.createElement('li');
-    //   f.innerHTML = project;
-    //   project.
-    // }
+    let x = document.getElementById('projects');
+    let ul = document.createElement('ul');
+    ul.classList.add('uk-text-normal', 'uk-list', 'uk-list-striped');
+    projects.forEach(project => {
+      let f = document.createElement('li');
+      f.innerHTML = project;
+      ul.appendChild(f);
+    });
+
     // pList.forEach(el => {
     //   let f = document.createElement('li');
     //   f.innerHTML = el.title;
     //   ul.appendChild(f);
     // });
     // // console.log(x, ul);
-    // x.appendChild(ul);
+    x.appendChild(ul);
   };
 
   const toggleForm = () => {
     let toggle = document.getElementById('toggle');
-    console.log(toggle);
     toggle.addEventListener('click', function() {
-      alert('clcked');
+      alert (toggle);
+      // if (toggle[0].style.display === 'none') {
+      //   toggle[0].style.display = 'block';
+      // } else {
+      //   toggle[0].style.display = 'none';
+      // }
     });
   }
 
@@ -49,11 +53,9 @@ const View = (() => {
 
 const Controller = ((ui, data) => {
   let myProjects = data.projectList();
-  console.log(myProjects);
   let proj = data.project('My first project');
-  // console.log(proj);
-  myProjects[proj.title] = proj.title;
 
+  myProjects[proj.title] = proj;
   ui.renderProjects(myProjects);
 
   const mytodos = [
@@ -70,7 +72,7 @@ const Controller = ((ui, data) => {
   });
 
   // proj.todos.push(...mytodos);
-
+  ui.toggleForm();
   ui.render(proj);
 
   // Get the field input data one for the project of task
