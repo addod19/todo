@@ -104,7 +104,7 @@ eval("var api = __webpack_require__(/*! ../../node_modules/style-loader/dist/run
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("// Imports\nvar ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\nexports = ___CSS_LOADER_API_IMPORT___(false);\n// Module\nexports.push([module.i, \"nav {\\n  background-color: #244;\\n}\\n.logo-icon {\\n  margin: 25px -15px 0 20px;\\n}\\n.toggle-form {\\n  display: none;\\n}\\n\", \"\"]);\n// Exports\nmodule.exports = exports;\n\n\n//# sourceURL=webpack:///./dist/css/main.css?./node_modules/css-loader/dist/cjs.js");
+eval("// Imports\nvar ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\nexports = ___CSS_LOADER_API_IMPORT___(false);\n// Module\nexports.push([module.i, \"nav {\\r\\n  background-color: #244;\\r\\n}\\r\\n.logo-icon {\\r\\n  margin: 25px -15px 0 20px;\\r\\n}\\r\\n.toggle-form {\\r\\n  display: none;\\r\\n}\\r\\n\", \"\"]);\n// Exports\nmodule.exports = exports;\n\n\n//# sourceURL=webpack:///./dist/css/main.css?./node_modules/css-loader/dist/cjs.js");
 
 /***/ }),
 
@@ -207,7 +207,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _nod
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nconst Data = (() => {\n  const todo = (\n    title,\n    desc = 'No description',\n    priority = 0,\n    date = new Date(),\n    completed = false\n  ) => {\n    return {\n      title,\n      desc,\n      priority,\n      date,\n      completed\n    };\n  };\n\n  const project = (title, todos = []) => {\n    return {\n      title,\n      todos\n    };\n  };\n\n  const projectList = () => ({});\n\n  return { project, todo, projectList };\n})();\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Data);\n\n\n//# sourceURL=webpack:///./src/modules/data.js?");
+eval("__webpack_require__.r(__webpack_exports__);\nconst Data = (() => {\r\n  const todo = (\r\n    title,\r\n    desc = 'No description',\r\n    priority = 0,\r\n    date = new Date(),\r\n    completed = false\r\n  ) => {\r\n    return {\r\n      title,\r\n      desc,\r\n      priority,\r\n      date,\r\n      completed\r\n    };\r\n  };\r\n\r\n  const project = (title, todos = []) => {\r\n    return {\r\n      title,\r\n      todos\r\n    };\r\n  };\r\n\r\n  const projectList = () => ({});\r\n\r\n  return { project, todo, projectList };\r\n})();\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (Data);\r\n\n\n//# sourceURL=webpack:///./src/modules/data.js?");
 
 /***/ })
 
