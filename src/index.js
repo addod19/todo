@@ -9,7 +9,7 @@ const View = (() => {
     ul.classList.add('uk-text-normal', 'uk-list', 'uk-list-striped');
     project.todos.forEach(el => {
       let f = document.createElement('li');
-      f.innerHTML = el.title;
+      f.innerHTML = `<input class="uk-checkbox" type="checkbox"> ${el.title}<a href="" class="uk-align-right" uk-icon="icon: trash"></a>`;
       ul.appendChild(f);
     });
     x.appendChild(ul);
@@ -52,21 +52,17 @@ const Controller = ((ui, data) => {
   ui.renderProjects(myProjects);
 
   const mytodos = [
-    `<input class="uk-checkbox" type="checkbox"> Walk the dog <a href="" class="uk-align-right" uk-icon="icon: trash"></a>`,
-    `<input class="uk-checkbox" type="checkbox"> Go for our daily exercise <a href="" class="uk-align-right" uk-icon="icon: trash"></a>`,
-    `<input class="uk-checkbox" type="checkbox"></span> Garbage Out today <a href="" class="uk-align-right" uk-icon="icon: trash"></a>`,
-    '<input class="uk-checkbox" type="checkbox"> Wash the car <a href="" class="uk-align-right" uk-icon="icon: trash"></a>',
-    `<input class="uk-checkbox" type="checkbox"> Take kids to schools <a href="" class="uk-align-right" uk-icon="icon: trash"></a>`
+    `Walk the dog`,
+    `Go for our daily exercise`,
+    `Garbage Out today`,
+    'Wash the car',
+    `Take kids to schools`
   ];
 
   mytodos.forEach(el => {
     let td = data.todo(el);
     proj.todos.push(td);
   });
-
-  const dosmth = e => {
-    alert('it works!');
-  };
 
   document.getElementById('toggle').addEventListener('click', ui.toggleForm);
 
