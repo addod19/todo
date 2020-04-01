@@ -116,12 +116,18 @@ const Controller = ((ui, data) => {
       e.preventDefault();
       alert('sent');
     }
-  }
+  };
+
+  const close = () => {
+    let form = document.getElementById('toggle-form');
+    form.style.display = 'none';
+  };
 
   document.getElementById('toggle').addEventListener('click', ui.toggleForm);
   document.getElementById('addProject').addEventListener('click', ui.toggleProject);
   document.getElementById('submit').addEventListener('click', getTodo);
   document.getElementById('project').addEventListener('keydown', send);
+  document.getElementById('cancel').addEventListener('click', close);
 
   ui.render(prj);
   ui.render(proj);
