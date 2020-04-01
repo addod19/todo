@@ -1,7 +1,7 @@
 {
   "name": "todo",
   "version": "1.0.0",
-  "description": "Applying the concepts of Single Responsibility and Tightly Coupled Objects",
+  "description": "Applying the concepts of Single Responsibility and Loosely Coupled Objects",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
