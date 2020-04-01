@@ -30,7 +30,19 @@ const View = (() => {
     x.appendChild(ul);
   };
 
-  return { render, renderProjects };
+  const toggleForm = () => {
+    let toggle = document.getElementById('toggle');
+    toggle.addEventListener('click', function() {
+      alert(toggle);
+      // if (toggle[0].style.display === 'none') {
+      //   toggle[0].style.display = 'block';
+      // } else {
+      //   toggle[0].style.display = 'none';
+      // }
+    });
+  };
+
+  return { render, renderProjects, toggleForm };
 })();
 
 const Controller = ((ui, data) => {
@@ -38,7 +50,6 @@ const Controller = ((ui, data) => {
   let proj = data.project('My first project');
 
   myProjects[proj.title] = proj;
-  console.log(myProjects);
   ui.renderProjects(myProjects);
 
   const mytodos = [
@@ -55,7 +66,7 @@ const Controller = ((ui, data) => {
   });
 
   // proj.todos.push(...mytodos);
-
+  ui.toggleForm();
   ui.render(proj);
 
   // Get the field input data one for the project of task

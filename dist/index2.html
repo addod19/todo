@@ -48,8 +48,21 @@
             class="uk-card uk-card-default uk-card-body uk-text-bold"
             id="list"
           >
-            Selected project name
-            <a href="" class="uk-align-right" uk-icon="icon: plus-circle"></a>
+            Selected project name <a href="" class="uk-align-right" uk-icon="icon: plus-circle" id="toggle"></a>
+          </div>
+          <div class="toggle-form" id="toggle-form">
+            <form class="uk-grid-small" uk-grid>
+              <div class="uk-width-1-4@s">
+                <input class="uk-input" type="text" placeholder="title">
+              </div>
+              <div class="uk-width-1-4@s">
+                <input class="uk-input" type="text" placeholder="description">
+              </div>
+              <div class="uk-width-1-4@s">
+                <input class="uk-input" type="text" placeholder="Date">
+              </div>
+              <button class="uk-button uk-button-success uk-width-1-4@s">Submit</button>
+            </form>
           </div>
         </div>
       </div>
