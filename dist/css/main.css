@@ -4,6 +4,7 @@ nav {
 .logo-icon {
   margin: 25px -15px 0 20px;
 }
-.toggle-form {
+.toggle-form,
+.toggleProject {
   display: none;
 }

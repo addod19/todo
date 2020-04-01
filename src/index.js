@@ -16,7 +16,7 @@ const View = (() => {
 
     project.todos.forEach(el => {
       let f = document.createElement('li');
-      f.innerHTML = `<input class="uk-checkbox" type="checkbox"> ${el.title}<a href="" class="uk-align-right" uk-icon="icon: trash"></a>`;
+      f.innerHTML = `<input class="uk-checkbox" type="checkbox"> ${el.title}<a href="" class="uk-align-right" uk-icon="icon: trash" id="dTodo"></a>`;
       ul.appendChild(f);
     });
     x.appendChild(ul);
@@ -30,10 +30,8 @@ const View = (() => {
     projects.forEach(project => {
       let f = document.createElement('li');
       f.innerHTML = project;
-
       ul.appendChild(f);
     });
-
     x.appendChild(ul);
   };
 
@@ -57,6 +55,11 @@ const View = (() => {
     }
   };
 
+  const clearInputs = () => {
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => (input.value = ''));
+  };
+
   const readInput = () => {
     const title = document.getElementById('title');
     const desc = document.getElementById('desc');
@@ -66,18 +69,22 @@ const View = (() => {
       desc: desc.value,
       date: date.value
     };
+    clearInputs();
     return todo;
   };
 
-  const clearInputs = () => {
-    const inputs = document.querySelectorAll('input');
-    inputs.forEach(input => { input.value = ''; });
-  };
-  const updateStorage = () => {
-    localStorage.setItem('todos', JSON.stringify(todo));
-  };
+  // const updateStorage = () => {
+  //   localStorage.setItem('todos', JSON.stringify(todo));
+  // };
 
-  return { render, renderProjects, toggleForm, readInput, updateStorage, clearInputs, toggleProject };
+  return {
+    render,
+    renderProjects,
+    toggleForm,
+    readInput,
+    // updateStorage,
+    toggleProject
+  };
 })();
 
 const Controller = ((ui, data) => {
@@ -93,7 +100,7 @@ const Controller = ((ui, data) => {
     `Go for our daily exercise`,
     `Garbage Out today`,
     'Wash the car',
-    `Take kids to schools`
+    `Take kids to schools2`
   ];
 
   mytodos.forEach(el => {
@@ -103,33 +110,28 @@ const Controller = ((ui, data) => {
   });
 
   const getTodo = e => {
-    e.preventDefault();
+    // e.preventDefault();
     let td = ui.readInput();
     proj.todos.push(td);
-    ui.clearInputs;
     ui.toggleForm(event);
     ui.render(proj);
   };
 
   const send = e => {
-    if ( e.which == 13 ) {
+    if (e.which == 13) {
       e.preventDefault();
       alert('sent');
     }
   };
 
-  const close = () => {
-    let form = document.getElementById('toggle-form');
-    form.style.display = 'none';
-  };
-
   document.getElementById('toggle').addEventListener('click', ui.toggleForm);
-  document.getElementById('addProject').addEventListener('click', ui.toggleProject);
   document.getElementById('submit').addEventListener('click', getTodo);
+  document
+    .getElementById('addProject')
+    .addEventListener('click', ui.toggleProject);
   document.getElementById('project').addEventListener('keydown', send);
   document.getElementById('cancel').addEventListener('click', close);
 
-  ui.render(prj);
   ui.render(proj);
 
   // Get the field input data one for the project of task
