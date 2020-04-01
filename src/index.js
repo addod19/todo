@@ -111,9 +111,17 @@ const Controller = ((ui, data) => {
     ui.render(proj);
   };
 
+  const send = e => {
+    if ( e.which == 13 ) {
+      e.preventDefault();
+      alert('sent');
+    }
+  }
+
   document.getElementById('toggle').addEventListener('click', ui.toggleForm);
   document.getElementById('addProject').addEventListener('click', ui.toggleProject);
   document.getElementById('submit').addEventListener('click', getTodo);
+  document.getElementById('project').addEventListener('keydown', send);
 
   ui.render(prj);
   ui.render(proj);
