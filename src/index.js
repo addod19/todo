@@ -30,16 +30,15 @@ const View = (() => {
     x.appendChild(ul);
   };
 
-  const toggleForm = () => {
-    let toggle = document.getElementById('toggle');
-    toggle.addEventListener('click', function() {
-      alert(toggle);
-      // if (toggle[0].style.display === 'none') {
-      //   toggle[0].style.display = 'block';
-      // } else {
-      //   toggle[0].style.display = 'none';
-      // }
-    });
+  const toggleForm = event => {
+    event.preventDefault();
+    let form = document.getElementById('toggle-form');
+    // alert(form);
+    if (form.style.display === '' || form.style.display === 'none') {
+      form.style.display = 'block';
+    } else {
+      form.style.display = 'none';
+    }
   };
 
   return { render, renderProjects, toggleForm };
@@ -65,8 +64,13 @@ const Controller = ((ui, data) => {
     proj.todos.push(td);
   });
 
-  // proj.todos.push(...mytodos);
-  ui.toggleForm();
+  const dosmth = e => {
+    alert('it works!');
+  };
+
+  document.getElementById('toggle').addEventListener('click', ui.toggleForm);
+
+  // ui.toggleForm();
   ui.render(proj);
 
   // Get the field input data one for the project of task
