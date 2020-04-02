@@ -32,7 +32,7 @@ const View = (() => {
 
       f.setAttribute('id', i);
       if (el.completed) input.setAttribute('checked', '');
-      elem.innerHTML = ` ${el.title}`;
+      elem.innerHTML = ` ${el.title} - ${el.completed}`;
       f.append(input, elem, trashBtn);
       ul.appendChild(f);
     });
@@ -81,7 +81,6 @@ const View = (() => {
     const title = document.getElementById('title').value;
     const desc = document.getElementById('desc').value;
     const date = document.getElementById('date').value;
-
     clearInputs();
     return { title, desc, date };
   };
@@ -120,8 +119,7 @@ const Controller = ((ui, data) => {
   const getTodo = e => {
     // e.preventDefault();
     let td = ui.readInput();
-    let newTodo = data.todo(td.title, td.desc, td.date, false);
-    // console.log(newTodo);
+    let newTodo = data.todo(td.title, td.desc, td.date, (td.completed = false));
     proj.todos.push(td);
     ui.toggleForm(e);
     ui.render(proj);
