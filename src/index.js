@@ -32,7 +32,7 @@ const View = (() => {
 
       f.setAttribute('id', i);
       if (el.completed) input.setAttribute('checked', '');
-      elem.innerHTML = ` ${el.title} - ${el.completed}`;
+      elem.innerHTML = ` ${el.title}`;
       f.append(input, elem, trashBtn);
       ul.appendChild(f);
     });
@@ -78,16 +78,12 @@ const View = (() => {
   };
 
   const readInput = () => {
-    const title = document.getElementById('title');
-    const desc = document.getElementById('desc');
-    const date = document.getElementById('date');
-    let todo = {
-      title: title.value,
-      desc: desc.value,
-      date: date.value
-    };
+    const title = document.getElementById('title').value;
+    const desc = document.getElementById('desc').value;
+    const date = document.getElementById('date').value;
+
     clearInputs();
-    return todo;
+    return { title, desc, date };
   };
 
   return {
@@ -112,7 +108,7 @@ const Controller = ((ui, data) => {
     `Go for our daily exercise`,
     `Garbage Out today`,
     'Wash the car',
-    `Take kids to schools8`
+    `Take kids to schools12`
   ];
 
   exampleTodos.forEach(el => {
@@ -122,13 +118,17 @@ const Controller = ((ui, data) => {
   });
 
   const getTodo = e => {
+    // e.preventDefault();
     let td = ui.readInput();
+    let newTodo = data.todo(td.title, td.desc, td.date, false);
+    // console.log(newTodo);
     proj.todos.push(td);
-    ui.toggleForm(event);
+    ui.toggleForm(e);
     ui.render(proj);
   };
 
   const deleteTodo = e => {
+    // console.log(e.target.parentElement.parentElement.id);
     let clickedLi = e.target.parentElement.parentElement.id;
     if (clickedLi >= 0) {
       proj.todos.splice(clickedLi, 1);
@@ -137,8 +137,7 @@ const Controller = ((ui, data) => {
   };
 
   const completeTodo = e => {
-    console.log(e.target.parentElement.id);
-    // let id = e.target.parentElement.id;
+    // console.log(e.target.parentElement.id);
     let clickedLi = e.target.parentElement;
     if (proj.todos[clickedLi.id].completed) {
       proj.todos[clickedLi.id].completed = false;
@@ -152,7 +151,7 @@ const Controller = ((ui, data) => {
     if (e.target.parentElement.tagName == 'BUTTON') {
       deleteTodo(e);
     }
-    if (e.target.tagName == 'INPUT') {
+    if (e.target.type == 'checkbox') {
       completeTodo(e);
     }
   };
