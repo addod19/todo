@@ -14,9 +14,25 @@ const View = (() => {
     let ul = document.createElement('ul');
     ul.classList.add('uk-text-normal', 'uk-list', 'uk-list-striped');
 
-    project.todos.forEach(el => {
+    project.todos.forEach((el, i) => {
       let f = document.createElement('li');
-      f.innerHTML = `<input class="uk-checkbox" type="checkbox"> ${el.title}<a href="" class="uk-align-right" uk-icon="icon: trash" id="dTodo"></a>`;
+      let input = document.createElement('input');
+
+      let elem = document.createElement('span');
+      
+
+      let trashBtn = document.createElement('button');
+      trashBtn.className = 'uk-align-right trash';
+      trashBtn.setAttribute('uk-icon', 'icon: trash');
+
+      input.setAttribute('type', 'checkbox');
+      input.classList.add('uk-checkbox');
+
+      
+      f.setAttribute('id', i);
+      if (el.completed) input.setAttribute('checked', '');
+      elem.innerHTML = `${el.title} ${el.completed}`;
+      f.append(input, elem, trashBtn);
       ul.appendChild(f);
     });
     x.appendChild(ul);
@@ -73,16 +89,11 @@ const View = (() => {
     return todo;
   };
 
-  // const updateStorage = () => {
-  //   localStorage.setItem('todos', JSON.stringify(todo));
-  // };
-
   return {
     render,
     renderProjects,
     toggleForm,
     readInput,
-    // updateStorage,
     toggleProject
   };
 })();
@@ -95,26 +106,50 @@ const Controller = ((ui, data) => {
   myProjects[proj.title] = proj;
   ui.renderProjects(myProjects);
 
-  const mytodos = [
+  const exampleTodos = [
     `Walk the dog`,
     `Go for our daily exercise`,
     `Garbage Out today`,
     'Wash the car',
-    `Take kids to schools2`
+    `Take kids to schools7`
   ];
 
-  mytodos.forEach(el => {
+  exampleTodos.forEach(el => {
     let td = data.todo(el);
     proj.todos.push(td);
     localStorage.setItem('todos', JSON.stringify(td));
   });
 
   const getTodo = e => {
-    // e.preventDefault();
     let td = ui.readInput();
     proj.todos.push(td);
     ui.toggleForm(event);
     ui.render(proj);
+  };
+
+  const deleteTodo = e => {
+    let clickedLi = e.target.parentElement.parentElement.id;
+    if (clickedLi >= 0) {
+      proj.todos.splice(clickedLi, 1);
+      ui.render(proj);
+    }
+  };
+
+  const completeTodo = e => {
+    console.log(e.target.parentElement.id);
+    let id = e.target.parentElement.id;
+    proj.todos[id].completed = true;
+    let clickedLi = e.target.parentElement;
+    clickedLi.setAttribute('style', 'text-decoration:line-through');
+  };
+
+  const handleClick = e => {
+    if (e.target.parentElement.tagName == 'BUTTON') {
+      deleteTodo(e);
+    }
+    if (e.target.tagName == 'INPUT') {
+      completeTodo(e);
+    }
   };
 
   const send = e => {
@@ -124,6 +159,10 @@ const Controller = ((ui, data) => {
     }
   };
 
+  // ui.render(prj);
+  ui.render(proj);
+
+  // first render then attach Listeners
   document.getElementById('toggle').addEventListener('click', ui.toggleForm);
   document.getElementById('submit').addEventListener('click', getTodo);
   document
@@ -132,7 +171,9 @@ const Controller = ((ui, data) => {
   document.getElementById('project').addEventListener('keydown', send);
   document.getElementById('cancel').addEventListener('click', close);
 
-  ui.render(proj);
+  // Try to attach eventListeners to all todos
+  let todoList = document.getElementById('list');
+  todoList.addEventListener('click', handleClick);
 
   // Get the field input data one for the project of task
 
