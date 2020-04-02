@@ -69,21 +69,27 @@ const View = (() => {
     return todo;
   };
 
-  const clearInputs = () => {
-    const inputs = document.querySelectorAll('input');
-    inputs.forEach(input => { input.value = ''; });
-  };
-  const updateStorage = () => {
-    localStorage.setItem('todos', JSON.stringify(todo));
+  const cancel = (e) => {
+    e.preventDefault();
+    let canc = document.getElementById('toggle-form');
+    canc.style.display = 'none';
   };
 
-  return { render, renderProjects, toggleForm, readInput, updateStorage, clearInputs, toggleProject };
+  // const clearInputs = () => {
+  //   const inputs = document.querySelectorAll('input');
+  //   inputs.forEach(input => { input.value = ''; });
+  // };
+  // const updateStorage = () => {
+  //   localStorage.setItem('todos', JSON.stringify(todo));
+  // };
+
+  return { render, renderProjects, toggleForm, readInput, toggleProject, cancel };
 })();
 
 const Controller = ((ui, data) => {
   let myProjects = data.projectList();
   let proj = data.project('My first project');
-  let prj = data.project('Dummy project');
+  // let prj = data.project('Dummy project');
 
   myProjects[proj.title] = proj;
   ui.renderProjects(myProjects);
@@ -116,14 +122,19 @@ const Controller = ((ui, data) => {
       e.preventDefault();
       alert('sent');
     }
-  }
+  };
+
+  const c = e => {
+    ui.cancel(e);
+  };
 
   document.getElementById('toggle').addEventListener('click', ui.toggleForm);
   document.getElementById('addProject').addEventListener('click', ui.toggleProject);
   document.getElementById('submit').addEventListener('click', getTodo);
   document.getElementById('project').addEventListener('keydown', send);
+  document.getElementById('cancel').addEventListener('click', c);
 
-  ui.render(prj);
+  // ui.render(prj);
   ui.render(proj);
 
   // Get the field input data one for the project of task
