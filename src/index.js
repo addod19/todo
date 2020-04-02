@@ -16,9 +16,14 @@ const View = (() => {
 
     project.todos.forEach((el, i) => {
       let f = document.createElement('li');
+      let input = document.createElement('input');
+      input.setAttribute('type', 'checkbox');
+      input.classList.add('uk-checkbox');
       f.setAttribute('id', i);
-      // f.innerHTML = `<input class="uk-checkbox" type="checkbox"> ${el.title}<a href="" class="uk-align-right trash" uk-icon="icon: trash"></a>`;
-      f.innerHTML = `<input class="uk-checkbox" type="checkbox"> ${el.title}<button class="uk-align-right trash" uk-icon="icon: trash"></button>`;
+      if (el.completed) input.setAttribute('checked', '');
+      // f.appendChild(input);
+      // f.innerHTML = `<input class="uk-checkbox" type="checkbox"> ${el.title} ${el.completed} <button class="uk-align-right trash" uk-icon="icon: trash"></button>`;
+      f.innerHTML = `${el.title} ${el.completed} <button class="uk-align-right trash" uk-icon="icon: trash"></button>`;
       ul.appendChild(f);
     });
     x.appendChild(ul);
@@ -112,7 +117,6 @@ const Controller = ((ui, data) => {
   });
 
   const getTodo = e => {
-    // e.preventDefault();
     let td = ui.readInput();
     proj.todos.push(td);
     ui.toggleForm(event);
@@ -120,14 +124,28 @@ const Controller = ((ui, data) => {
   };
 
   const deleteTodo = e => {
-    // e.preventDefault();
-    console.log(e.target.parentElement.parentElement);
+    let clickedLi = e.target.parentElement.parentElement.id;
+    if (clickedLi >= 0) {
+      proj.todos.splice(clickedLi, 1);
+      ui.render(proj);
+    }
+    // }
+  };
+
+  const completeTodo = e => {
+    console.log(e.target.parentElement.id);
+    let id = e.target.parentElement.id;
+    proj.todos[id].completed = true;
+    let clickedLi = e.target.parentElement;
+    clickedLi.setAttribute('style', 'text-decoration:line-through');
+  };
+
+  const handleClick = e => {
     if (e.target.parentElement.tagName == 'BUTTON') {
-      let clickedLi = e.target.parentElement.parentElement.id;
-      if (clickedLi >= 0) {
-        proj.todos.splice(clickedLi, 1);
-        ui.render(proj);
-      }
+      deleteTodo(e);
+    }
+    if (e.target.tagName == 'INPUT') {
+      completeTodo(e);
     }
   };
 
@@ -151,7 +169,7 @@ const Controller = ((ui, data) => {
 
   // Try to attach eventListeners to all todos
   let todoList = document.getElementById('list');
-  todoList.addEventListener('click', deleteTodo);
+  todoList.addEventListener('click', handleClick);
 
   // Get the field input data one for the project of task
 
