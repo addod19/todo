@@ -19,6 +19,9 @@ const View = (() => {
       let input = document.createElement('input');
 
       let elem = document.createElement('span');
+      el.completed
+        ? elem.setAttribute('style', 'text-decoration:line-through')
+        : elem.removeAttribute('style');
 
       let trashBtn = document.createElement('button');
       trashBtn.className = 'uk-align-right trash';
@@ -29,7 +32,7 @@ const View = (() => {
 
       f.setAttribute('id', i);
       if (el.completed) input.setAttribute('checked', '');
-      elem.innerHTML = `${el.title} ${el.completed}`;
+      elem.innerHTML = ` ${el.title} - ${el.completed}`;
       f.append(input, elem, trashBtn);
       ul.appendChild(f);
     });
@@ -109,7 +112,7 @@ const Controller = ((ui, data) => {
     `Go for our daily exercise`,
     `Garbage Out today`,
     'Wash the car',
-    `Take kids to schools7`
+    `Take kids to schools8`
   ];
 
   exampleTodos.forEach(el => {
@@ -135,10 +138,14 @@ const Controller = ((ui, data) => {
 
   const completeTodo = e => {
     console.log(e.target.parentElement.id);
-    let id = e.target.parentElement.id;
-    proj.todos[id].completed = true;
+    // let id = e.target.parentElement.id;
     let clickedLi = e.target.parentElement;
-    clickedLi.setAttribute('style', 'text-decoration:line-through');
+    if (proj.todos[clickedLi.id].completed) {
+      proj.todos[clickedLi.id].completed = false;
+    } else {
+      proj.todos[clickedLi.id].completed = true;
+    }
+    ui.render(proj);
   };
 
   const handleClick = e => {
@@ -167,7 +174,7 @@ const Controller = ((ui, data) => {
     .getElementById('addProject')
     .addEventListener('click', ui.toggleProject);
   document.getElementById('project').addEventListener('keydown', send);
-  document.getElementById('cancel').addEventListener('click', close);
+  // document.getElementById('cancel').addEventListener('click', close);
 
   // Try to attach eventListeners to all todos
   let todoList = document.getElementById('list');
