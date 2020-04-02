@@ -17,13 +17,20 @@ const View = (() => {
     project.todos.forEach((el, i) => {
       let f = document.createElement('li');
       let input = document.createElement('input');
+
+      let elem = document.createElement('span');
+
+      let trashBtn = document.createElement('button');
+      trashBtn.className = 'uk-align-right trash';
+      trashBtn.setAttribute('uk-icon', 'icon: trash');
+
       input.setAttribute('type', 'checkbox');
       input.classList.add('uk-checkbox');
+
       f.setAttribute('id', i);
       if (el.completed) input.setAttribute('checked', '');
-      // f.appendChild(input);
-      // f.innerHTML = `<input class="uk-checkbox" type="checkbox"> ${el.title} ${el.completed} <button class="uk-align-right trash" uk-icon="icon: trash"></button>`;
-      f.innerHTML = `${el.title} ${el.completed} <button class="uk-align-right trash" uk-icon="icon: trash"></button>`;
+      elem.innerHTML = `${el.title} ${el.completed}`;
+      f.append(input, elem, trashBtn);
       ul.appendChild(f);
     });
     x.appendChild(ul);
@@ -80,16 +87,11 @@ const View = (() => {
     return todo;
   };
 
-  // const updateStorage = () => {
-  //   localStorage.setItem('todos', JSON.stringify(todo));
-  // };
-
   return {
     render,
     renderProjects,
     toggleForm,
     readInput,
-    // updateStorage,
     toggleProject
   };
 })();
@@ -129,7 +131,6 @@ const Controller = ((ui, data) => {
       proj.todos.splice(clickedLi, 1);
       ui.render(proj);
     }
-    // }
   };
 
   const completeTodo = e => {
@@ -166,6 +167,7 @@ const Controller = ((ui, data) => {
     .getElementById('addProject')
     .addEventListener('click', ui.toggleProject);
   document.getElementById('project').addEventListener('keydown', send);
+  document.getElementById('cancel').addEventListener('click', close);
 
   // Try to attach eventListeners to all todos
   let todoList = document.getElementById('list');
