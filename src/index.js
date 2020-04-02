@@ -16,8 +16,9 @@ const View = (() => {
 
     project.todos.forEach((el, i) => {
       let f = document.createElement('li');
-      // f.innerHTML = `<input class="uk-checkbox" type="checkbox"> ${el.title}<a href="" class="uk-align-right" uk-icon="icon: trash" id="t${i}"></a>`;
-      f.innerHTML = `<input class="uk-checkbox" type="checkbox"> ${el.title}<button href="" class="uk-align-right" uk-icon="icon: trash" id="t${i}"></button>`;
+      f.setAttribute('id', i);
+      // f.innerHTML = `<input class="uk-checkbox" type="checkbox"> ${el.title}<a href="" class="uk-align-right trash" uk-icon="icon: trash"></a>`;
+      f.innerHTML = `<input class="uk-checkbox" type="checkbox"> ${el.title}<button class="uk-align-right trash" uk-icon="icon: trash"></button>`;
       ul.appendChild(f);
     });
     x.appendChild(ul);
@@ -96,15 +97,15 @@ const Controller = ((ui, data) => {
   myProjects[proj.title] = proj;
   ui.renderProjects(myProjects);
 
-  const mytodos = [
+  const exampleTodos = [
     `Walk the dog`,
     `Go for our daily exercise`,
     `Garbage Out today`,
     'Wash the car',
-    `Take kids to schools4`
+    `Take kids to schools7`
   ];
 
-  mytodos.forEach(el => {
+  exampleTodos.forEach(el => {
     let td = data.todo(el);
     proj.todos.push(td);
     localStorage.setItem('todos', JSON.stringify(td));
@@ -118,6 +119,18 @@ const Controller = ((ui, data) => {
     ui.render(proj);
   };
 
+  const deleteTodo = e => {
+    // e.preventDefault();
+    console.log(e.target.parentElement.parentElement);
+    if (e.target.parentElement.tagName == 'BUTTON') {
+      let clickedLi = e.target.parentElement.parentElement.id;
+      if (clickedLi >= 0) {
+        proj.todos.splice(clickedLi, 1);
+        ui.render(proj);
+      }
+    }
+  };
+
   const send = e => {
     if (e.which == 13) {
       e.preventDefault();
@@ -125,6 +138,10 @@ const Controller = ((ui, data) => {
     }
   };
 
+  // ui.render(prj);
+  ui.render(proj);
+
+  // first render then attach Listeners
   document.getElementById('toggle').addEventListener('click', ui.toggleForm);
   document.getElementById('submit').addEventListener('click', getTodo);
   document
@@ -132,8 +149,9 @@ const Controller = ((ui, data) => {
     .addEventListener('click', ui.toggleProject);
   document.getElementById('project').addEventListener('keydown', send);
 
-  // ui.render(prj);
-  ui.render(proj);
+  // Try to attach eventListeners to all todos
+  let todoList = document.getElementById('list');
+  todoList.addEventListener('click', deleteTodo);
 
   // Get the field input data one for the project of task
 
