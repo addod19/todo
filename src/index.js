@@ -1,90 +1,7 @@
 import '../node_modules/uikit';
-import Data from './modules/data';
 import '../dist/css/main.css';
-
-const View = (() => {
-  const render = project => {
-    // first remove the old list
-    let parent = document.getElementById('list');
-    let child = parent.getElementsByTagName('ul');
-    parent.removeChild(child[0]);
-    // then render the new one
-    let x = document.getElementById('list');
-    let y = document.getElementById('projects');
-    let ul = document.createElement('ul');
-    ul.classList.add('uk-text-normal', 'uk-list', 'uk-list-striped');
-
-    project.todos.forEach(el => {
-      let f = document.createElement('li');
-      f.innerHTML = `<input class="uk-checkbox" type="checkbox"> ${el.title}<a href="" class="uk-align-right" uk-icon="icon: trash"></a>`;
-      ul.appendChild(f);
-    });
-    x.appendChild(ul);
-  };
-
-  const renderProjects = pList => {
-    let projects = Object.keys(pList);
-    let x = document.getElementById('projects');
-    let ul = document.createElement('ul');
-    ul.classList.add('uk-text-normal', 'uk-list', 'uk-list-striped');
-    projects.forEach(project => {
-      let f = document.createElement('li');
-      f.innerHTML = project;
-
-      ul.appendChild(f);
-    });
-
-    x.appendChild(ul);
-  };
-
-  const toggleForm = event => {
-    event.preventDefault();
-    let form = document.getElementById('toggle-form');
-    if (form.style.display === '' || form.style.display === 'none') {
-      form.style.display = 'block';
-    } else {
-      form.style.display = 'none';
-    }
-  };
-
-  const toggleProject = event => {
-    event.preventDefault();
-    let form = document.getElementById('showInput');
-    if (form.style.display === '' || form.style.display === 'none') {
-      form.style.display = 'block';
-    } else {
-      form.style.display = 'none';
-    }
-  };
-
-  const readInput = () => {
-    const title = document.getElementById('title');
-    const desc = document.getElementById('desc');
-    const date = document.getElementById('date');
-    let todo = {
-      title: title.value,
-      desc: desc.value,
-      date: date.value
-    };
-    return todo;
-  };
-
-  const cancel = (e) => {
-    e.preventDefault();
-    let canc = document.getElementById('toggle-form');
-    canc.style.display = 'none';
-  };
-
-  // const clearInputs = () => {
-  //   const inputs = document.querySelectorAll('input');
-  //   inputs.forEach(input => { input.value = ''; });
-  // };
-  // const updateStorage = () => {
-  //   localStorage.setItem('todos', JSON.stringify(todo));
-  // };
-
-  return { render, renderProjects, toggleForm, readInput, toggleProject, cancel };
-})();
+import Data from './modules/data';
+import View from './modules/view';
 
 const Controller = ((ui, data) => {
   let myProjects = data.projectList();
@@ -94,48 +11,80 @@ const Controller = ((ui, data) => {
   myProjects[proj.title] = proj;
   ui.renderProjects(myProjects);
 
-  const mytodos = [
+  const exampleTodos = [
     `Walk the dog`,
     `Go for our daily exercise`,
     `Garbage Out today`,
     'Wash the car',
-    `Take kids to schools`
+    `Take kids to schools13`
   ];
 
-  mytodos.forEach(el => {
+  exampleTodos.forEach(el => {
     let td = data.todo(el);
     proj.todos.push(td);
     localStorage.setItem('todos', JSON.stringify(td));
   });
 
   const getTodo = e => {
-    e.preventDefault();
+    // e.preventDefault();
     let td = ui.readInput();
+    let newTodo = data.todo(td.title, td.desc, td.date, (td.completed = false));
     proj.todos.push(td);
-    ui.clearInputs;
-    ui.toggleForm(event);
+    ui.toggleForm(e);
     ui.render(proj);
   };
 
+  const deleteTodo = e => {
+    // console.log(e.target.parentElement.parentElement.id);
+    let clickedLi = e.target.parentElement.parentElement.id;
+    if (clickedLi >= 0) {
+      proj.todos.splice(clickedLi, 1);
+      ui.render(proj);
+    }
+  };
+
+  const completeTodo = e => {
+    // console.log(e.target.parentElement.id);
+    let clickedLi = e.target.parentElement;
+    if (proj.todos[clickedLi.id].completed) {
+      proj.todos[clickedLi.id].completed = false;
+    } else {
+      proj.todos[clickedLi.id].completed = true;
+    }
+    ui.render(proj);
+  };
+
+  const handleClick = e => {
+    if (e.target.parentElement.tagName == 'BUTTON') {
+      deleteTodo(e);
+    }
+    if (e.target.type == 'checkbox') {
+      completeTodo(e);
+    }
+  };
+
   const send = e => {
-    if ( e.which == 13 ) {
+    if (e.which == 13) {
       e.preventDefault();
       alert('sent');
     }
   };
 
-  const c = e => {
-    ui.cancel(e);
-  };
-
-  document.getElementById('toggle').addEventListener('click', ui.toggleForm);
-  document.getElementById('addProject').addEventListener('click', ui.toggleProject);
-  document.getElementById('submit').addEventListener('click', getTodo);
-  document.getElementById('project').addEventListener('keydown', send);
-  document.getElementById('cancel').addEventListener('click', c);
-
   // ui.render(prj);
   ui.render(proj);
+
+  // first render then attach Listeners
+  document.getElementById('toggle').addEventListener('click', ui.toggleForm);
+  document.getElementById('submit').addEventListener('click', getTodo);
+  document
+    .getElementById('addProject')
+    .addEventListener('click', ui.toggleProject);
+  document.getElementById('project').addEventListener('keydown', send);
+  // document.getElementById('cancel').addEventListener('click', close);
+
+  // Try to attach eventListeners to all todos
+  let todoList = document.getElementById('list');
+  todoList.addEventListener('click', handleClick);
 
   // Get the field input data one for the project of task
 

@@ -2,14 +2,12 @@ const Data = (() => {
   const todo = (
     title,
     desc = 'No description',
-    priority = 0,
     date = new Date(),
     completed = false
   ) => {
     return {
       title,
       desc,
-      priority,
       date,
       completed
     };
