@@ -1,98 +1,7 @@
 import '../node_modules/uikit';
-import Data from './modules/data';
 import '../dist/css/main.css';
-
-const View = (() => {
-  const render = project => {
-    // first remove the old list
-    let parent = document.getElementById('list');
-    let child = parent.getElementsByTagName('ul');
-    parent.removeChild(child[0]);
-    // then render the new one
-    let x = document.getElementById('list');
-    let y = document.getElementById('projects');
-    let ul = document.createElement('ul');
-    ul.classList.add('uk-text-normal', 'uk-list', 'uk-list-striped');
-
-    project.todos.forEach((el, i) => {
-      let f = document.createElement('li');
-      let input = document.createElement('input');
-
-      let elem = document.createElement('span');
-      el.completed
-        ? elem.setAttribute('style', 'text-decoration:line-through')
-        : elem.removeAttribute('style');
-
-      let trashBtn = document.createElement('button');
-      trashBtn.className = 'uk-align-right trash';
-      trashBtn.setAttribute('uk-icon', 'icon: trash');
-
-      input.setAttribute('type', 'checkbox');
-      input.classList.add('uk-checkbox');
-
-      f.setAttribute('id', i);
-      if (el.completed) input.setAttribute('checked', '');
-      elem.innerHTML = ` ${el.title} - ${el.completed}`;
-      f.append(input, elem, trashBtn);
-      ul.appendChild(f);
-    });
-    x.appendChild(ul);
-  };
-
-  const renderProjects = pList => {
-    let projects = Object.keys(pList);
-    let x = document.getElementById('projects');
-    let ul = document.createElement('ul');
-    ul.classList.add('uk-text-normal', 'uk-list', 'uk-list-striped');
-    projects.forEach(project => {
-      let f = document.createElement('li');
-      f.innerHTML = project;
-      ul.appendChild(f);
-    });
-    x.appendChild(ul);
-  };
-
-  const toggleForm = event => {
-    event.preventDefault();
-    let form = document.getElementById('toggle-form');
-    if (form.style.display === '' || form.style.display === 'none') {
-      form.style.display = 'block';
-    } else {
-      form.style.display = 'none';
-    }
-  };
-
-  const toggleProject = event => {
-    event.preventDefault();
-    let form = document.getElementById('showInput');
-    if (form.style.display === '' || form.style.display === 'none') {
-      form.style.display = 'block';
-    } else {
-      form.style.display = 'none';
-    }
-  };
-
-  const clearInputs = () => {
-    const inputs = document.querySelectorAll('input');
-    inputs.forEach(input => (input.value = ''));
-  };
-
-  const readInput = () => {
-    const title = document.getElementById('title').value;
-    const desc = document.getElementById('desc').value;
-    const date = document.getElementById('date').value;
-    clearInputs();
-    return { title, desc, date };
-  };
-
-  return {
-    render,
-    renderProjects,
-    toggleForm,
-    readInput,
-    toggleProject
-  };
-})();
+import Data from './modules/data';
+import View from './modules/view';
 
 const Controller = ((ui, data) => {
   let myProjects = data.projectList();
@@ -107,7 +16,7 @@ const Controller = ((ui, data) => {
     `Go for our daily exercise`,
     `Garbage Out today`,
     'Wash the car',
-    `Take kids to schools12`
+    `Take kids to schools13`
   ];
 
   exampleTodos.forEach(el => {
