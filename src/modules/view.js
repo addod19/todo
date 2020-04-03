@@ -84,11 +84,18 @@ const View = (() => {
     return { title, desc, date };
   };
 
+  const readProject = () => {
+    const project = document.getElementById('project').value;
+    clearInputs();
+    return project;
+  };
+
   return {
     render,
     renderProjects,
     toggleForm,
     readInput,
+    readProject,
     toggleProject
   };
 })();

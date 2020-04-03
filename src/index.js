@@ -9,6 +9,7 @@ const Controller = ((ui, data) => {
   let prj = data.project('Dummy project');
 
   myProjects[proj.title] = proj;
+  myProjects[prj.title] = prj;
   ui.renderProjects(myProjects);
 
   const exampleTodos = [
@@ -16,7 +17,7 @@ const Controller = ((ui, data) => {
     `Go for our daily exercise`,
     `Garbage Out today`,
     'Wash the car',
-    `Take kids to schools13`
+    `Take kids to schools14`
   ];
 
   exampleTodos.forEach(el => {
@@ -26,12 +27,19 @@ const Controller = ((ui, data) => {
   });
 
   const getTodo = e => {
-    // e.preventDefault();
     let td = ui.readInput();
     let newTodo = data.todo(td.title, td.desc, td.date, (td.completed = false));
     proj.todos.push(td);
     ui.toggleForm(e);
     ui.render(proj);
+  };
+
+  const getProject = e => {
+    if (e.which == 13) {
+      e.preventDefault();
+      let proj = ui.readProject();
+      alert(`project name ${proj}`);
+    }
   };
 
   const deleteTodo = e => {
@@ -44,7 +52,6 @@ const Controller = ((ui, data) => {
   };
 
   const completeTodo = e => {
-    // console.log(e.target.parentElement.id);
     let clickedLi = e.target.parentElement;
     if (proj.todos[clickedLi.id].completed) {
       proj.todos[clickedLi.id].completed = false;
@@ -63,14 +70,6 @@ const Controller = ((ui, data) => {
     }
   };
 
-  const send = e => {
-    if (e.which == 13) {
-      e.preventDefault();
-      alert('sent');
-    }
-  };
-
-  // ui.render(prj);
   ui.render(proj);
 
   // first render then attach Listeners
@@ -79,8 +78,7 @@ const Controller = ((ui, data) => {
   document
     .getElementById('addProject')
     .addEventListener('click', ui.toggleProject);
-  document.getElementById('project').addEventListener('keydown', send);
-  // document.getElementById('cancel').addEventListener('click', close);
+  document.getElementById('project').addEventListener('keydown', getProject);
 
   // Try to attach eventListeners to all todos
   let todoList = document.getElementById('list');
