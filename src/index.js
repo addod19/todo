@@ -17,7 +17,7 @@ const Controller = ((ui, data) => {
     `Go for our daily exercise`,
     `Garbage Out today`,
     'Wash the car',
-    `Take kids to schools14`
+    `Take kids to schools16`
   ];
 
   exampleTodos.forEach(el => {
@@ -36,9 +36,14 @@ const Controller = ((ui, data) => {
 
   const getProject = e => {
     if (e.which == 13) {
-      e.preventDefault();
-      let proj = ui.readProject();
-      alert(`project name ${proj}`);
+      // e.preventDefault();
+      let project = ui.readProject();
+      let proj = data.project(project);
+      myProjects[proj.title] = proj;
+      // alert(`project name ${proj}`);
+      // ui.toggleProject();
+      ui.toggleProject(e);
+      ui.renderProjects(myProjects);
     }
   };
 

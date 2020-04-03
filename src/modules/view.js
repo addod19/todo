@@ -39,6 +39,12 @@ const View = (() => {
   };
 
   const renderProjects = pList => {
+    let parent = document.getElementById('projects');
+    let child = parent.getElementsByTagName('ul');
+    parent.removeChild(child[0]);
+    console.log(child);
+    // let child = parent.getElementsByTagName('ul');
+
     let projects = Object.keys(pList);
     let x = document.getElementById('projects');
     let ul = document.createElement('ul');
