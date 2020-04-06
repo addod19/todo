@@ -19,7 +19,7 @@ const Controller = ((ui, data) => {
     `Go for our daily exercise`,
     `Garbage Out today`,
     'Wash the car',
-    `Take kids to schools20`
+    `Take kids to schools21`
   ];
 
   exampleTodos.forEach(el => {
@@ -31,8 +31,6 @@ const Controller = ((ui, data) => {
   const getTodo = e => {
     let td = ui.readInput();
     let newTodo = data.todo(td.title, td.desc, td.date, (td.completed = false));
-
-    console.log(e, 'in getTodo: ', currentProject, newTodo);
     currentProject.todos.push(newTodo);
     ui.toggleForm(e);
     ui.render(currentProject);
@@ -51,7 +49,6 @@ const Controller = ((ui, data) => {
   };
 
   const deleteTodo = e => {
-    // console.log(e.target.parentElement.parentElement.id);
     let clickedLi = e.target.parentElement.parentElement.id;
     if (clickedLi >= 0) {
       currentProject.todos.splice(clickedLi, 1);
@@ -77,9 +74,7 @@ const Controller = ((ui, data) => {
       completeTodo(e);
     }
     if (e.target.tagName == 'LI') {
-      let currentProject = myProjects[e.target.innerText];
-      console.log('Current proj:', currentProject.title);
-      console.log('All Projects:', myProjects);
+      currentProject = myProjects[e.target.innerText];
       ui.render(currentProject);
     }
   };
