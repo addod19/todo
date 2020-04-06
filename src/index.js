@@ -5,11 +5,13 @@ import View from './modules/view';
 
 const Controller = ((ui, data) => {
   let myProjects = data.projectList();
-  let proj = data.project('My first project');
-  let prj = data.project('Dummy project');
+  let p1 = data.project('My first project');
+  let p2 = data.project('Dummy project');
 
-  myProjects[proj.title] = proj;
-  myProjects[prj.title] = prj;
+  myProjects[p1.title] = p1;
+  myProjects[p2.title] = p2;
+
+  let currentProject = p1;
   ui.renderProjects(myProjects);
 
   const exampleTodos = [
@@ -17,31 +19,32 @@ const Controller = ((ui, data) => {
     `Go for our daily exercise`,
     `Garbage Out today`,
     'Wash the car',
-    `Take kids to schools16`
+    `Take kids to schools20`
   ];
 
   exampleTodos.forEach(el => {
     let td = data.todo(el);
-    proj.todos.push(td);
+    currentProject.todos.push(td);
     localStorage.setItem('todos', JSON.stringify(td));
   });
 
   const getTodo = e => {
     let td = ui.readInput();
     let newTodo = data.todo(td.title, td.desc, td.date, (td.completed = false));
-    proj.todos.push(td);
+
+    console.log(e, 'in getTodo: ', currentProject, newTodo);
+    currentProject.todos.push(newTodo);
     ui.toggleForm(e);
-    ui.render(proj);
+    ui.render(currentProject);
   };
 
   const getProject = e => {
     if (e.which == 13) {
       // e.preventDefault();
       let project = ui.readProject();
-      let proj = data.project(project);
-      myProjects[proj.title] = proj;
+      let projtemp = data.project(project);
+      myProjects[projtemp.title] = projtemp;
       // alert(`project name ${proj}`);
-      // ui.toggleProject();
       ui.toggleProject(e);
       ui.renderProjects(myProjects);
     }
@@ -51,19 +54,19 @@ const Controller = ((ui, data) => {
     // console.log(e.target.parentElement.parentElement.id);
     let clickedLi = e.target.parentElement.parentElement.id;
     if (clickedLi >= 0) {
-      proj.todos.splice(clickedLi, 1);
-      ui.render(proj);
+      currentProject.todos.splice(clickedLi, 1);
+      ui.render(currentProject);
     }
   };
 
   const completeTodo = e => {
     let clickedLi = e.target.parentElement;
-    if (proj.todos[clickedLi.id].completed) {
-      proj.todos[clickedLi.id].completed = false;
+    if (currentProject.todos[clickedLi.id].completed) {
+      currentProject.todos[clickedLi.id].completed = false;
     } else {
-      proj.todos[clickedLi.id].completed = true;
+      currentProject.todos[clickedLi.id].completed = true;
     }
-    ui.render(proj);
+    ui.render(currentProject);
   };
 
   const handleClick = e => {
@@ -73,10 +76,15 @@ const Controller = ((ui, data) => {
     if (e.target.type == 'checkbox') {
       completeTodo(e);
     }
+    if (e.target.tagName == 'LI') {
+      let currentProject = myProjects[e.target.innerText];
+      console.log('Current proj:', currentProject.title);
+      console.log('All Projects:', myProjects);
+      ui.render(currentProject);
+    }
   };
 
-  ui.render(proj);
-
+  ui.render(currentProject);
   // first render then attach Listeners
   document.getElementById('toggle').addEventListener('click', ui.toggleForm);
   document.getElementById('submit').addEventListener('click', getTodo);
@@ -88,6 +96,8 @@ const Controller = ((ui, data) => {
   // Try to attach eventListeners to all todos
   let todoList = document.getElementById('list');
   todoList.addEventListener('click', handleClick);
+  let projectList = document.getElementById('projects');
+  projectList.addEventListener('click', handleClick);
 
   // Get the field input data one for the project of task
 

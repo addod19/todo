@@ -1,7 +1,10 @@
 const View = (() => {
   const render = project => {
     // first remove the old list
+    console.log('in the render: ', project.title);
     let parent = document.getElementById('list');
+    let title = document.getElementById('projectName');
+    title.innerHTML = project.title;
     let child = parent.getElementsByTagName('ul');
     parent.removeChild(child[0]);
     // then render the new one
@@ -42,9 +45,6 @@ const View = (() => {
     let parent = document.getElementById('projects');
     let child = parent.getElementsByTagName('ul');
     parent.removeChild(child[0]);
-    console.log(child);
-    // let child = parent.getElementsByTagName('ul');
-
     let projects = Object.keys(pList);
     let x = document.getElementById('projects');
     let ul = document.createElement('ul');
@@ -93,7 +93,7 @@ const View = (() => {
   const readProject = () => {
     const project = document.getElementById('project').value;
     clearInputs();
-    return project;
+    return project; // not an obj only title
   };
 
   return {
