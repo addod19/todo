@@ -19,16 +19,17 @@ const Controller = ((ui, data) => {
     `Go for our daily exercise`,
     `Garbage Out today`,
     'Wash the car',
-    `Take kids to schools21`
+    `Take kids to schools22`,
   ];
 
-  exampleTodos.forEach(el => {
+  exampleTodos.forEach((el) => {
     let td = data.todo(el);
     currentProject.todos.push(td);
     localStorage.setItem('todos', JSON.stringify(td));
   });
 
-  const getTodo = e => {
+  const getTodo = (e) => {
+    event.preventDefault();
     let td = ui.readInput();
     let newTodo = data.todo(td.title, td.desc, td.date, (td.completed = false));
     currentProject.todos.push(newTodo);
@@ -36,9 +37,9 @@ const Controller = ((ui, data) => {
     ui.render(currentProject);
   };
 
-  const getProject = e => {
+  const getProject = (e) => {
     if (e.which == 13) {
-      // e.preventDefault();
+      e.preventDefault();
       let project = ui.readProject();
       let projtemp = data.project(project);
       myProjects[projtemp.title] = projtemp;
@@ -48,7 +49,7 @@ const Controller = ((ui, data) => {
     }
   };
 
-  const deleteTodo = e => {
+  const deleteTodo = (e) => {
     let clickedLi = e.target.parentElement.parentElement.id;
     if (clickedLi >= 0) {
       currentProject.todos.splice(clickedLi, 1);
@@ -56,7 +57,8 @@ const Controller = ((ui, data) => {
     }
   };
 
-  const completeTodo = e => {
+  const completeTodo = (e) => {
+    event.preventDefault();
     let clickedLi = e.target.parentElement;
     if (currentProject.todos[clickedLi.id].completed) {
       currentProject.todos[clickedLi.id].completed = false;
@@ -66,7 +68,7 @@ const Controller = ((ui, data) => {
     ui.render(currentProject);
   };
 
-  const handleClick = e => {
+  const handleClick = (e) => {
     if (e.target.parentElement.tagName == 'BUTTON') {
       deleteTodo(e);
     }
