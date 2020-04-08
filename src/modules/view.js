@@ -2,6 +2,8 @@ const View = (() => {
   const render = project => {
     // first remove the old list
     let parent = document.getElementById('list');
+    let title = document.getElementById('projectName');
+    title.innerHTML = project.title;
     let child = parent.getElementsByTagName('ul');
     parent.removeChild(child[0]);
     // then render the new one
@@ -28,7 +30,7 @@ const View = (() => {
 
       f.setAttribute('id', i);
       if (el.completed) input.setAttribute('checked', '');
-      elem.innerHTML = ` ${el.title} - ${el.completed}`;
+      elem.innerHTML = ` ${el.title}`;
       f.append(input, elem, trashBtn);
       ul.appendChild(f);
       // create hidden form for each line, in a second line
@@ -39,6 +41,9 @@ const View = (() => {
   };
 
   const renderProjects = pList => {
+    let parent = document.getElementById('projects');
+    let child = parent.getElementsByTagName('ul');
+    parent.removeChild(child[0]);
     let projects = Object.keys(pList);
     let x = document.getElementById('projects');
     let ul = document.createElement('ul');
@@ -84,11 +89,18 @@ const View = (() => {
     return { title, desc, date };
   };
 
+  const readProject = () => {
+    const project = document.getElementById('project').value;
+    clearInputs();
+    return project; // not an obj only title
+  };
+
   return {
     render,
     renderProjects,
     toggleForm,
     readInput,
+    readProject,
     toggleProject
   };
 })();
