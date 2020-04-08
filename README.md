@@ -34,6 +34,7 @@
 - HTML,
 - CSS,
 - Javascript es6
+- UI Kit for styling and responsiveness
 
 ## Live Demo
 
