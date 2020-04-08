@@ -19,11 +19,14 @@
 
 ## Screenshots
 
-### Big Screen with winner message
+### Desktop/Laptoop device
+<img src="/dist/images/todo2.PNG" alt="">
 
+### Tables device
+<img src="/dist/images/todo1.PNG" alt="">
 
-### Big Screen
-
+### Mobile device
+<img src="/dist/images/todo.PNG" alt="">
 
 
 ## Built With
