@@ -17,6 +17,7 @@ const View = (() => {
       let input = document.createElement('input');
 
       let elem = document.createElement('span');
+      elem.className = 'user-click';
       el.completed
         ? elem.setAttribute('style', 'text-decoration:line-through')
         : elem.removeAttribute('style');
@@ -50,6 +51,7 @@ const View = (() => {
     ul.classList.add('uk-text-normal', 'uk-list', 'uk-list-striped');
     projects.forEach(project => {
       let f = document.createElement('li');
+      f.className = 'user-click';
       f.innerHTML = project;
       ul.appendChild(f);
     });

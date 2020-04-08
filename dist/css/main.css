@@ -8,3 +8,6 @@ nav {
 .toggleProject {
   display: none;
 }
+.user-click:hover {
+   cursor: pointer;
+}
