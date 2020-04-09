@@ -19,7 +19,7 @@ const Controller = ((ui, data) => {
     `Go for our daily exercise`,
     `Garbage Out today`,
     'Wash the car',
-    `Take kids to schools22`,
+    `Take kids to schools23`,
   ];
 
   exampleTodos.forEach((el) => {
