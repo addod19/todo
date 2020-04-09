@@ -109,6 +109,31 @@
         </div>
       </div>
     </div>
+    <!-- Start of edit modal -->
+    <div id="edit-modal" uk-modal>
+      <div
+        class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical"
+        uk-grid
+      >
+        <div class="uk-width-2-5 uk-first-column">
+          <input class="uk-input" type="text" id="edit-title" />
+        </div>
+        <div class="uk-width-3-5">
+          <input class="uk-input" type="text" id="edit-desc" />
+        </div>
+        <p class="uk-text-right">
+          <button
+            class="uk-button uk-button-default uk-modal-close"
+            type="button"
+          >
+            Cancel
+          </button>
+          <button class="uk-button uk-button-primary" type="button">
+            Save
+          </button>
+        </p>
+      </div>
+    </div>
     <script src="main.js" type="module"></script>
   </body>
 </html>

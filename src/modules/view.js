@@ -15,11 +15,13 @@ const View = (() => {
       let f = document.createElement('li');
       let input = document.createElement('input');
 
-      let elem = document.createElement('span');
-      elem.className = 'user-click';
+      let elem = document.createElement('a');
+      elem.className = 'todo-text';
       el.completed
         ? elem.setAttribute('style', 'text-decoration:line-through')
         : elem.removeAttribute('style');
+      elem.setAttribute('href', '#edit-modal');
+      elem.setAttribute('uk-toggle', '');
 
       let trashBtn = document.createElement('button');
       trashBtn.className = 'uk-align-right trash';
@@ -30,6 +32,7 @@ const View = (() => {
 
       f.setAttribute('id', i);
       if (el.completed) input.setAttribute('checked', '');
+
       elem.innerHTML = ` ${el.title}`;
       let description = document.createElement('p');
       description.classList.add(
