@@ -61,19 +61,9 @@ const View = (() => {
     x.appendChild(ul);
   };
 
-  const toggleForm = (event) => {
+  const toggleFP = (event, id) => {
     event.preventDefault();
-    let form = document.getElementById('toggle-form');
-    if (form.style.display === '' || form.style.display === 'none') {
-      form.style.display = 'block';
-    } else {
-      form.style.display = 'none';
-    }
-  };
-
-  const toggleProject = (event) => {
-    event.preventDefault();
-    let form = document.getElementById('showInput');
+    let form = document.getElementById(id);
     if (form.style.display === '' || form.style.display === 'none') {
       form.style.display = 'block';
     } else {
@@ -105,8 +95,7 @@ const View = (() => {
     renderProjects,
     readInput,
     readProject,
-    toggleForm,
-    toggleProject,
+    toggleFP,
   };
 })();
 

@@ -33,7 +33,8 @@ const Controller = ((ui, data) => {
     let td = ui.readInput();
     let newTodo = data.todo(td.title, td.desc, td.date, (td.completed = false));
     currentProject.todos.push(newTodo);
-    ui.toggleForm(e);
+    // ui.toggleForm(e);
+    ui.toggleFP(e, 'toggle-form');
     ui.render(currentProject);
   };
 
@@ -44,7 +45,7 @@ const Controller = ((ui, data) => {
       let projtemp = data.project(project);
       myProjects[projtemp.title] = projtemp;
       // alert(`project name ${proj}`);
-      ui.toggleProject(e);
+      ui.toggleFP(e, 'showInput');
       ui.renderProjects(myProjects);
     }
   };
@@ -83,11 +84,13 @@ const Controller = ((ui, data) => {
 
   ui.render(currentProject);
   // first render then attach Listeners
-  document.getElementById('toggle').addEventListener('click', ui.toggleForm);
+  document
+    .getElementById('toggle')
+    .addEventListener('click', (e) => ui.toggleFP(e, 'toggle-form'));
   document.getElementById('submit').addEventListener('click', getTodo);
   document
     .getElementById('addProject')
-    .addEventListener('click', ui.toggleProject);
+    .addEventListener('click', (e) => ui.toggleFP(e, 'showInput'));
   document.getElementById('project').addEventListener('keydown', getProject);
 
   // Try to attach eventListeners to all todos
