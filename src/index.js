@@ -16,7 +16,7 @@ const Controller = ((ui, data) => {
 
   const exampleTodos = [
     `Highlight the selected project`,
-    `Go for our daily exercise`,
+    `Fix the edit form`,
     `Garbage Out today`,
     'Wash the car',
     `Take kids to schools24`,
