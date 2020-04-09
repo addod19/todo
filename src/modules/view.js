@@ -31,11 +31,15 @@ const View = (() => {
       f.setAttribute('id', i);
       if (el.completed) input.setAttribute('checked', '');
       elem.innerHTML = ` ${el.title}`;
-      f.append(input, elem, trashBtn);
+      let description = document.createElement('p');
+      description.classList.add(
+        'uk-width-2-2',
+        'uk-text-small',
+        'uk-margin-left'
+      );
+      description.innerHTML = `${el.desc}`;
+      f.append(input, elem, trashBtn, description);
       ul.appendChild(f);
-      // create hidden form for each line, in a second line
-
-      //
     });
     x.appendChild(ul);
   };
@@ -99,9 +103,9 @@ const View = (() => {
   return {
     render,
     renderProjects,
-    toggleForm,
     readInput,
     readProject,
+    toggleForm,
     toggleProject,
   };
 })();
