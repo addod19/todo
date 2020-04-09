@@ -15,11 +15,11 @@ const Controller = ((ui, data) => {
   ui.renderProjects(myProjects);
 
   const exampleTodos = [
-    `Walk the dog`,
+    `Highlight the selected project`,
     `Go for our daily exercise`,
     `Garbage Out today`,
     'Wash the car',
-    `Take kids to schools23`,
+    `Take kids to schools24`,
   ];
 
   exampleTodos.forEach((el) => {

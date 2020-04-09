@@ -1,5 +1,5 @@
 const View = (() => {
-  const render = project => {
+  const render = (project) => {
     // first remove the old list
     let parent = document.getElementById('list');
     let title = document.getElementById('projectName');
@@ -8,7 +8,6 @@ const View = (() => {
     parent.removeChild(child[0]);
     // then render the new one
     let x = document.getElementById('list');
-    let y = document.getElementById('projects');
     let ul = document.createElement('ul');
     ul.classList.add('uk-text-normal', 'uk-list', 'uk-list-striped');
 
@@ -41,7 +40,7 @@ const View = (() => {
     x.appendChild(ul);
   };
 
-  const renderProjects = pList => {
+  const renderProjects = (pList) => {
     let parent = document.getElementById('projects');
     let child = parent.getElementsByTagName('ul');
     parent.removeChild(child[0]);
@@ -49,7 +48,7 @@ const View = (() => {
     let x = document.getElementById('projects');
     let ul = document.createElement('ul');
     ul.classList.add('uk-text-normal', 'uk-list', 'uk-list-striped');
-    projects.forEach(project => {
+    projects.forEach((project) => {
       let f = document.createElement('li');
       f.className = 'user-click';
       f.innerHTML = project;
@@ -58,7 +57,7 @@ const View = (() => {
     x.appendChild(ul);
   };
 
-  const toggleForm = event => {
+  const toggleForm = (event) => {
     event.preventDefault();
     let form = document.getElementById('toggle-form');
     if (form.style.display === '' || form.style.display === 'none') {
@@ -68,7 +67,7 @@ const View = (() => {
     }
   };
 
-  const toggleProject = event => {
+  const toggleProject = (event) => {
     event.preventDefault();
     let form = document.getElementById('showInput');
     if (form.style.display === '' || form.style.display === 'none') {
@@ -80,15 +79,15 @@ const View = (() => {
 
   const clearInputs = () => {
     const inputs = document.querySelectorAll('input');
-    inputs.forEach(input => (input.value = ''));
+    inputs.forEach((input) => (input.value = ''));
   };
 
   const readInput = () => {
     const title = document.getElementById('title').value;
     const desc = document.getElementById('desc').value;
-    const date = document.getElementById('date').value;
+    // const date = document.getElementById('date').value;
     clearInputs();
-    return { title, desc, date };
+    return { title, desc };
   };
 
   const readProject = () => {
@@ -103,7 +102,7 @@ const View = (() => {
     toggleForm,
     readInput,
     readProject,
-    toggleProject
+    toggleProject,
   };
 })();
 
