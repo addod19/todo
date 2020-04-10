@@ -12,6 +12,7 @@ const Controller = ((ui, data) => {
   myProjects[p2.title] = p2;
 
   let currentProject = p1;
+  let currentLine;
   ui.renderProjects(myProjects);
 
   const exampleTodos = [
@@ -68,7 +69,7 @@ const Controller = ((ui, data) => {
   };
 
   const handleClick = (e) => {
-    let currentLine;
+    // console.log(currentProject);
     if (e.target.parentElement.tagName == 'BUTTON') {
       deleteTodo(e);
     }
@@ -94,9 +95,7 @@ const Controller = ((ui, data) => {
         td.date,
         (td.completed = false)
       );
-
       currentProject.todos[currentLine] = newTodo;
-      console.log((currentProject.todos[currentLine] = newTodo));
       UIkit.modal('#edit-modal').hide();
       ui.render(currentProject);
     }
