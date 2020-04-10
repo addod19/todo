@@ -54,7 +54,7 @@ const View = (() => {
     let projects = Object.keys(pList);
     let x = document.getElementById('projects');
     let ul = document.createElement('ul');
-    ul.classList.add('uk-text-normal', 'uk-list', 'uk-list-striped');
+    ul.classList.add('uk-text-normal', 'uk-list', 'uk-list-divider');
     projects.forEach((project) => {
       let f = document.createElement('li');
       f.className = 'user-click';

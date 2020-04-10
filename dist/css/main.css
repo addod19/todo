@@ -9,5 +9,6 @@ nav {
   display: none;
 }
 .user-click:hover {
+  font-weight: 700;
   cursor: pointer;
 }

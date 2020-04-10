@@ -1,6 +1,6 @@
 # Todo App
-> Applying the concepts of Single Responsibility and Loosely Coupled Objects while building our todo app
 
+> Applying the concepts of Single Responsibility and Loosely Coupled Objects while building our todo app
 
 ## Features
 
@@ -16,18 +16,19 @@
 3. Add a feature to edit a project
 4. Add hover effects
 
-
 ## Screenshots
 
 ### Desktop/Laptoop device
+
 <img src="/dist/images/todo2.PNG" alt="">
 
 ### Tables device
+
 <img src="/dist/images/todo1.PNG" alt="">
 
 ### Mobile device
-<img src="/dist/images/todo.PNG" alt="">
 
+<img src="/dist/images/todo.PNG" alt="">
 
 ## Built With
 
@@ -40,12 +41,11 @@
 
 [Live Demo Link](https://raw.githack.com/addod19/todo/dist/index.html)
 
-
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
 
-1. ``` git clone https://github.com/addod19/todo.git ```
+1. `git clone https://github.com/addod19/todo.git`
 2. Open the index.html with your favorite browser
 3. Enjoy the game
 
@@ -60,6 +60,7 @@ To get a local copy up and running follow these simple example steps.
 - Github: [@macnick](https://github.com/macnick)
 - Twitter: [@mac_experts](https://twitter.com/mac_experts)
 - Linkedin: [Nick Haralampopoulos](https://www.linkedin.com/in/nick-haralampopoulos/)
+- Email: [Nick Haralampopoulos](mac.expert.nick@gmail.com)
 
 👤 **Author1**
 
@@ -73,7 +74,6 @@ To get a local copy up and running follow these simple example steps.
 Contributions, issues and feature requests are welcome!
 
 Feel free to check the [issues page](https://github.com/addod19/todo/issues).
-
 
 1. Fork it (https://github.com/addod19/todo/fork)
 2. Create your feature branch (git checkout -b my-new-feature)
