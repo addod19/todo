@@ -75,9 +75,12 @@ const Controller = ((ui, data) => {
       completeTodo(e);
     }
     if (e.target.tagName == 'A') {
+      let td = e.target.parentElement.id;
+      let title = currentProject.todos[td].title;
+      let desc = currentProject.todos[td].desc;
       console.log('You clicked the text', e.target.parentElement.id);
       // put the data in the input fields
-      ui.fillInputs('hello', 'world');
+      ui.fillInputs(title, desc);
     }
     if (e.target.tagName == 'LI') {
       currentProject = myProjects[e.target.innerText];

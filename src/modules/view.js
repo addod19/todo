@@ -95,7 +95,9 @@ const View = (() => {
 
   const fillInputs = (title, desc) => {
     let t = document.getElementById('edit-title');
+    let d = document.getElementById('edit-desc');
     t.value = title;
+    d.value = desc;
   };
 
   return {
