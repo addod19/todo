@@ -93,12 +93,18 @@ const View = (() => {
     return project; // not an obj only title
   };
 
+  const fillInputs = (title, desc) => {
+    let t = document.getElementById('edit-title');
+    t.value = title;
+  };
+
   return {
     render,
     renderProjects,
     readInput,
     readProject,
     toggleFP,
+    fillInputs,
   };
 })();
 

@@ -33,7 +33,6 @@ const Controller = ((ui, data) => {
     let td = ui.readInput();
     let newTodo = data.todo(td.title, td.desc, td.date, (td.completed = false));
     currentProject.todos.push(newTodo);
-    // ui.toggleForm(e);
     ui.toggleFP(e, 'toggle-form');
     ui.render(currentProject);
   };
@@ -44,7 +43,6 @@ const Controller = ((ui, data) => {
       let project = ui.readProject();
       let projtemp = data.project(project);
       myProjects[projtemp.title] = projtemp;
-      // alert(`project name ${proj}`);
       ui.toggleFP(e, 'showInput');
       ui.renderProjects(myProjects);
     }
@@ -76,6 +74,11 @@ const Controller = ((ui, data) => {
     if (e.target.type == 'checkbox') {
       completeTodo(e);
     }
+    if (e.target.tagName == 'A') {
+      console.log('You clicked the text', e.target.parentElement.id);
+      // put the data in the input fields
+      ui.fillInputs('hello', 'world');
+    }
     if (e.target.tagName == 'LI') {
       currentProject = myProjects[e.target.innerText];
       ui.render(currentProject);
@@ -96,6 +99,8 @@ const Controller = ((ui, data) => {
   // Try to attach eventListeners to all todos
   let todoList = document.getElementById('list');
   todoList.addEventListener('click', handleClick);
+  let todoText = document.getElementsByClassName('todo-text');
+  [...todoText].forEach((text) => text.addEventListener('click', handleClick));
   let projectList = document.getElementById('projects');
   projectList.addEventListener('click', handleClick);
 
