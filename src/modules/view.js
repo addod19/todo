@@ -93,6 +93,13 @@ const View = (() => {
     return project; // not an obj only title
   };
 
+  const readEdit = () => {
+    const title = document.getElementById('edit-title').value;
+    const desc = document.getElementById('edit-desc').value;
+    // const date = document.getElementById('date').value;
+    return { title, desc };
+  };
+
   const fillInputs = (title, desc) => {
     let t = document.getElementById('edit-title');
     let d = document.getElementById('edit-desc');
@@ -101,12 +108,13 @@ const View = (() => {
   };
 
   return {
-    render,
-    renderProjects,
+    fillInputs,
+    readEdit,
     readInput,
     readProject,
+    render,
+    renderProjects,
     toggleFP,
-    fillInputs,
   };
 })();
 

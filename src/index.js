@@ -17,7 +17,7 @@ const Controller = ((ui, data) => {
   const exampleTodos = [
     `Highlight the selected project`,
     `Fix the edit form`,
-    `Garbage Out today`,
+    `Save the edits`,
     'Wash the car',
     `Take kids to schools24`,
   ];
@@ -68,6 +68,7 @@ const Controller = ((ui, data) => {
   };
 
   const handleClick = (e) => {
+    let currentLine;
     if (e.target.parentElement.tagName == 'BUTTON') {
       deleteTodo(e);
     }
@@ -75,15 +76,28 @@ const Controller = ((ui, data) => {
       completeTodo(e);
     }
     if (e.target.tagName == 'A') {
-      let td = e.target.parentElement.id;
-      let title = currentProject.todos[td].title;
-      let desc = currentProject.todos[td].desc;
-      console.log('You clicked the text', e.target.parentElement.id);
+      currentLine = e.target.parentElement.id;
+      let title = currentProject.todos[currentLine].title;
+      let desc = currentProject.todos[currentLine].desc;
       // put the data in the input fields
       ui.fillInputs(title, desc);
     }
     if (e.target.tagName == 'LI') {
       currentProject = myProjects[e.target.innerText];
+      ui.render(currentProject);
+    }
+    if (e.target.id == 'save') {
+      let td = ui.readEdit();
+      let newTodo = data.todo(
+        td.title,
+        td.desc,
+        td.date,
+        (td.completed = false)
+      );
+
+      currentProject.todos[currentLine] = newTodo;
+      console.log((currentProject.todos[currentLine] = newTodo));
+      UIkit.modal('#edit-modal').hide();
       ui.render(currentProject);
     }
   };
@@ -98,7 +112,7 @@ const Controller = ((ui, data) => {
     .getElementById('addProject')
     .addEventListener('click', (e) => ui.toggleFP(e, 'showInput'));
   document.getElementById('project').addEventListener('keydown', getProject);
-
+  document.getElementById('save').addEventListener('click', handleClick);
   // Try to attach eventListeners to all todos
   let todoList = document.getElementById('list');
   todoList.addEventListener('click', handleClick);
