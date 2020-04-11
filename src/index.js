@@ -18,11 +18,11 @@ const Controller = ((ui, data) => {
   ui.highlightProj('p0');
 
   const exampleTodos = [
-    `Highlight the selected project`,
-    `Fix the edit form`,
-    `Save the edits`,
-    'Wash the car',
-    `Take kids to schools24`,
+    `Click on the plus icon to add a new todo`,
+    `The trash can deletes the current todo`,
+    `You can mark a todo as completed`,
+    'You can edit title and description by click on title',
+    `Everything is saved in your computer`,
   ];
 
   exampleTodos.forEach((el) => {
@@ -48,6 +48,7 @@ const Controller = ((ui, data) => {
       myProjects[projtemp.title] = projtemp;
       ui.toggleFP(e, 'showInput');
       ui.renderProjects(myProjects);
+      ui.highlightProj('p0'); // we want to highlight the new one
     }
   };
 
