@@ -13,7 +13,9 @@ const Controller = ((ui, data) => {
 
   let currentProject = p1;
   let currentLine;
-  ui.renderProjects(myProjects);
+
+  ui.renderProjects(myProjects, currentProject);
+  ui.highlightProj('p0');
 
   const exampleTodos = [
     `Highlight the selected project`,
@@ -69,7 +71,6 @@ const Controller = ((ui, data) => {
   };
 
   const handleClick = (e) => {
-    // console.log(currentProject);
     if (e.target.parentElement.tagName == 'BUTTON') {
       deleteTodo(e);
     }
@@ -85,6 +86,8 @@ const Controller = ((ui, data) => {
     }
     if (e.target.tagName == 'LI') {
       currentProject = myProjects[e.target.innerText];
+      ui.renderProjects(myProjects, currentProject);
+      ui.highlightProj(e.target.id);
       ui.render(currentProject);
     }
     if (e.target.id == 'save') {

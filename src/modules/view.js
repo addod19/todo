@@ -55,13 +55,23 @@ const View = (() => {
     let x = document.getElementById('projects');
     let ul = document.createElement('ul');
     ul.classList.add('uk-text-normal', 'uk-list', 'uk-list-divider');
-    projects.forEach((project) => {
+    projects.forEach((project, i) => {
       let f = document.createElement('li');
       f.className = 'user-click';
+      f.setAttribute('id', `p${i}`);
       f.innerHTML = project;
       ul.appendChild(f);
     });
     x.appendChild(ul);
+  };
+
+  const highlightProj = (pid) => {
+    let triangle = document.createElement('span');
+    let line = document.getElementById(pid);
+    line.className = 'user-click uk-text-bold';
+    triangle.className = 'uk-align-right';
+    triangle.setAttribute('uk-icon', 'icon: triangle-right; ratio: 1.3');
+    line.appendChild(triangle);
   };
 
   const toggleFP = (event, id) => {
@@ -109,6 +119,7 @@ const View = (() => {
 
   return {
     fillInputs,
+    highlightProj,
     readEdit,
     readInput,
     readProject,
