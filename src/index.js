@@ -48,7 +48,8 @@ const Controller = ((ui, data) => {
       myProjects[projtemp.title] = projtemp;
       ui.toggleFP(e, 'showInput');
       ui.renderProjects(myProjects);
-      ui.highlightProj('p0'); // we want to highlight the new one
+      let last = Object.keys(myProjects).length;
+      ui.highlightProj(`p${last - 1}`); // we want to highlight the new one
     }
   };
 
