@@ -9,20 +9,24 @@ const Data = (() => {
       title,
       desc,
       date,
-      completed
+      completed,
     };
   };
 
   const project = (title, todos = []) => {
     return {
       title,
-      todos
+      todos,
     };
   };
 
   const projectList = () => ({});
 
-  return { project, todo, projectList };
+  const updateLocalStorage = (myProjects) => {
+    localStorage.setItem('DNtodo', JSON.stringify(myProjects));
+  };
+
+  return { project, todo, projectList, updateLocalStorage };
 })();
 
 export default Data;

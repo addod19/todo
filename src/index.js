@@ -28,7 +28,7 @@ const Controller = ((ui, data) => {
   exampleTodos.forEach((el) => {
     let td = data.todo(el);
     currentProject.todos.push(td);
-    localStorage.setItem('todos', JSON.stringify(td));
+    // localStorage.setItem('todos', JSON.stringify(td));
   });
 
   const getTodo = (e) => {
@@ -49,7 +49,7 @@ const Controller = ((ui, data) => {
       ui.toggleFP(e, 'showInput');
       ui.renderProjects(myProjects);
       let last = Object.keys(myProjects).length;
-      ui.highlightProj(`p${last - 1}`); // we want to highlight the new one
+      ui.highlightProj(`p${last - 1}`);
     }
   };
 
@@ -107,6 +107,8 @@ const Controller = ((ui, data) => {
   };
 
   ui.render(currentProject);
+
+  data.updateLocalStorage(myProjects);
   // first render then attach Listeners
   document
     .getElementById('toggle')
