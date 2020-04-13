@@ -91,6 +91,7 @@ const Controller = ((ui, data) => {
       ui.renderProjects(myProjects, currentProject);
       ui.highlightProj(e.target.id);
       ui.render(currentProject);
+      ui.renderModal();
     }
     if (e.target.id == 'save') {
       let td = ui.readEdit();
@@ -102,6 +103,7 @@ const Controller = ((ui, data) => {
       );
       currentProject.todos[currentLine] = newTodo;
       UIkit.modal('#edit-modal').hide();
+      localStorage.setItem('todos', JSON.stringify(td));
       ui.render(currentProject);
     }
   };

@@ -117,6 +117,57 @@ const View = (() => {
     d.value = desc;
   };
 
+  const renderModal = () => {
+    let editModal = document.createElement('DIV');
+    editModal.setAttribute('id', 'edit-modal');
+    editModal.setAttribute('uk-modal', '');
+    editModal.classList('uk-modal');
+
+    let ukModalDialog = document.createElement('DIV');
+    ukModalDialog.setAttribute('uk-grid', '');
+    ukModalDialog.classList('uk-modal-dialog', 'uk-modal-body', 'uk-margin-auto-vertical', 'uk-grid');
+
+    let editTitleDiv = document.createElement('DIV');
+    editTitleDiv.classList('uk-width-2-5', 'uk-first-column');
+
+    let editTitleInput = document.createElement('INPUT');
+    editTitleInput.setAttribute('type', 'text');
+    editTitleInput.classList('uk-input');
+    editTitleInput.setAttribute('id', 'edit-title');
+
+    editTitleDiv.appendChild(editTitleInput);
+
+    let editDescDiv = document.createElement('DIV');
+    editDescDiv.classList('uk-width-3-5');
+
+    let editDescInput = document.createElement('INPUT');
+    editDescInput.setAttribute('type', 'text');
+    editDescInput.classList('uk-input');
+    editDescInput.setAttribute('id', 'edit-desc');
+
+    editDescDiv.appendChild(editDescInput);
+
+    let p = document.createElement('P');
+    p.classList('uk-text-right');
+
+    let b = document.createElement('BUTTON');
+    b.classList('uk-button', 'uk-button-default', 'uk-modal-close');
+    b.setAttribute('type', 'button');
+    b.innerText = 'Cancel';
+
+    let s = document.createElement('BUTTON');
+    s.classList('uk-button', 'uk-button-primary');
+    s.setAttribute('type', 'button');
+    s.setAttribute('id', 'save');
+    s.innerText = 'Save';
+
+    p.append(b, s);
+
+    editModal.append(editTitleDiv, editDescDiv, p);
+
+    return editModal;
+  };
+
   return {
     fillInputs,
     highlightProj,
@@ -125,6 +176,7 @@ const View = (() => {
     readProject,
     render,
     renderProjects,
+    renderModal,
     toggleFP,
   };
 })();
