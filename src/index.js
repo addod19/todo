@@ -60,6 +60,7 @@ const Controller = ((ui, data) => {
       let last = Object.keys(myProjects).length;
       ui.highlightProj(`p${last - 1}`);
       data.updateLocalStorage(myProjects);
+      currentProject = myProjects[projtemp.title];
       ui.render(currentProject);
     }
   };
