@@ -207,7 +207,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _nod
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nconst Data = (() => {\n  const todo = (\n    title,\n    desc = 'No description',\n    date = new Date(),\n    completed = false\n  ) => {\n    return {\n      title,\n      desc,\n      date,\n      completed,\n    };\n  };\n\n  const project = (title, todos = []) => {\n    return {\n      title,\n      todos,\n    };\n  };\n\n  const projectList = () => ({});\n\n  const updateLocalStorage = (myProjects) => {\n    localStorage.setItem('DNtodo', JSON.stringify(myProjects));\n  };\n\n  return { project, todo, projectList, updateLocalStorage };\n})();\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Data);\n\n\n//# sourceURL=webpack:///./src/modules/data.js?");
+eval("__webpack_require__.r(__webpack_exports__);\nconst Data = (() => {\n  const todo = (\n    title,\n    desc = 'No description',\n    date = new Date(),\n    completed = false,\n    priority = false\n  ) => {\n    return {\n      title,\n      desc,\n      date,\n      completed,\n      priority,\n    };\n  };\n\n  const project = (title, todos = []) => {\n    return {\n      title,\n      todos,\n    };\n  };\n\n  const projectList = () => ({});\n\n  const updateLocalStorage = (myProjects) => {\n    localStorage.setItem('DNtodo', JSON.stringify(myProjects));\n  };\n\n  return { project, todo, projectList, updateLocalStorage };\n})();\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Data);\n\n\n//# sourceURL=webpack:///./src/modules/data.js?");
 
 /***/ }),
 

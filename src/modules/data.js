@@ -3,13 +3,15 @@ const Data = (() => {
     title,
     desc = 'No description',
     date = new Date(),
-    completed = false
+    completed = false,
+    priority = false
   ) => {
     return {
       title,
       desc,
       date,
       completed,
+      priority,
     };
   };
 
