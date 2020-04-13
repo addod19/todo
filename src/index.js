@@ -5,31 +5,39 @@ import View from './modules/view';
 
 const Controller = ((ui, data) => {
   let myProjects = data.projectList();
-  let p1 = data.project('My first project');
-  let p2 = data.project('Dummy project');
-
-  myProjects[p1.title] = p1;
-  myProjects[p2.title] = p2;
-
-  let currentProject = p1;
+  let currentProject;
   let currentLine;
+
+  if (!localStorage.getItem('DNtodo')) {
+    let p1 = data.project('My first project');
+    let p2 = data.project('Dummy project');
+    myProjects[p1.title] = p1;
+    myProjects[p2.title] = p2;
+    currentProject = p1;
+
+    const exampleTodos = [
+      `Click on the plus icon to add a new todo`,
+      `The trash can deletes the current todo`,
+      `You can mark a todo as completed`,
+      'You can edit title and description by click on title',
+      `Everything is saved in your computer`,
+    ];
+
+    exampleTodos.forEach((el) => {
+      let td = data.todo(el);
+      currentProject.todos.push(td);
+
+      ui.renderProjects(myProjects, currentProject);
+      ui.highlightProj('p0');
+    });
+  } else {
+    // we load the todos from localStorage
+    myProjects = JSON.parse(localStorage.getItem('DNtodo'));
+    currentProject = myProjects[Object.keys(myProjects)[0]];
+  }
 
   ui.renderProjects(myProjects, currentProject);
   ui.highlightProj('p0');
-
-  const exampleTodos = [
-    `Click on the plus icon to add a new todo`,
-    `The trash can deletes the current todo`,
-    `You can mark a todo as completed`,
-    'You can edit title and description by click on title',
-    `Everything is saved in your computer`,
-  ];
-
-  exampleTodos.forEach((el) => {
-    let td = data.todo(el);
-    currentProject.todos.push(td);
-    // localStorage.setItem('todos', JSON.stringify(td));
-  });
 
   const getTodo = (e) => {
     event.preventDefault();
@@ -38,6 +46,7 @@ const Controller = ((ui, data) => {
     currentProject.todos.push(newTodo);
     ui.toggleFP(e, 'toggle-form');
     ui.render(currentProject);
+    data.updateLocalStorage(myProjects);
   };
 
   const getProject = (e) => {
@@ -50,6 +59,8 @@ const Controller = ((ui, data) => {
       ui.renderProjects(myProjects);
       let last = Object.keys(myProjects).length;
       ui.highlightProj(`p${last - 1}`);
+      data.updateLocalStorage(myProjects);
+      ui.render(currentProject);
     }
   };
 
@@ -108,7 +119,6 @@ const Controller = ((ui, data) => {
 
   ui.render(currentProject);
 
-  data.updateLocalStorage(myProjects);
   // first render then attach Listeners
   document
     .getElementById('toggle')
