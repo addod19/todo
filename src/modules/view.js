@@ -92,9 +92,10 @@ const View = (() => {
   const readInput = () => {
     const title = document.getElementById('title').value;
     const desc = document.getElementById('desc').value;
-    // const date = document.getElementById('date').value;
+    const date = document.getElementById('date').value;
+    const priority = document.getElementById('priority').value;
     clearInputs();
-    return { title, desc };
+    return { title, desc, date, priority };
   };
 
   const readProject = () => {
@@ -106,8 +107,10 @@ const View = (() => {
   const readEdit = () => {
     const title = document.getElementById('edit-title').value;
     const desc = document.getElementById('edit-desc').value;
-    // const date = document.getElementById('date').value;
-    return { title, desc };
+    const date = document.getElementById('date').value;
+    const priority = document.getElementById('priority').value;
+
+    return { title, desc, date, priority };
   };
 
   const fillInputs = (title, desc) => {
