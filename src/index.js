@@ -110,7 +110,6 @@ const Controller = ((ui, data) => {
       ui.renderProjects(myProjects, currentProject);
       ui.highlightProj(e.target.id);
       ui.render(currentProject);
-      // ui.renderModal();
     }
     if (e.target.id == 'save') {
       let td = ui.readEdit();

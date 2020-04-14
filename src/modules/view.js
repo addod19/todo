@@ -125,17 +125,16 @@ const View = (() => {
     const desc = document.getElementById('edit-desc').value;
     const date = document.getElementById('edit-date').value;
     const priority = document.getElementsByName('priority')[2].checked;
-    console.log(priority);
     return { title, desc, date, priority };
   };
 
-  const fillInputs = (title, desc) => {
+  const fillInputs = (title, desc, date) => {
     let t = document.getElementById('edit-title');
     let d = document.getElementById('edit-desc');
-    let date = document.getElementById('edit-date');
+    let day = document.getElementById('edit-date');
     t.value = title;
     d.value = desc;
-    date.value = date;
+    day.value = date;
   };
 
   const renderModal = () => {

@@ -2,7 +2,7 @@ const Data = (() => {
   const todo = (
     title,
     desc = 'No description',
-    date = new Date(),
+    date,
     completed = false,
     priority
   ) => {
