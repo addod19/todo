@@ -1,26 +1,16 @@
 const Data = (() => {
-  const todo = (
+  const todo = (title, desc = 'No description', date, completed, priority) => ({
     title,
-    desc = 'No description',
+    desc,
     date,
-    completed = false,
-    priority
-  ) => {
-    return {
-      title,
-      desc,
-      date,
-      completed,
-      priority,
-    };
-  };
+    completed,
+    priority,
+  });
 
-  const project = (title, todos = []) => {
-    return {
-      title,
-      todos,
-    };
-  };
+  const project = (title, todos = []) => ({
+    title,
+    todos,
+  });
 
   const projectList = () => ({});
 
@@ -28,7 +18,12 @@ const Data = (() => {
     localStorage.setItem('DNtodo', JSON.stringify(myProjects));
   };
 
-  return { project, todo, projectList, updateLocalStorage };
+  return {
+    project,
+    todo,
+    projectList,
+    updateLocalStorage,
+  };
 })();
 
 export default Data;
