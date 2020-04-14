@@ -34,14 +34,33 @@ const View = (() => {
       if (el.completed) input.setAttribute('checked', '');
 
       elem.innerHTML = ` ${el.title}`;
+
+      let DD = document.createElement('DIV'); // responsive container for both description and date hence DD
+      DD.className = 'uk-grid-collapse';
+      DD.setAttribute('uk-grid', '');
+
       let description = document.createElement('p');
       description.classList.add(
-        'uk-width-2-2',
+        'uk-width-1-1@s',
+        'uk-width-1-2@m',
+        'uk-width-1-3@l',
         'uk-text-small',
-        'uk-margin-left'
+        'uk-margin-right'
       );
       description.innerHTML = `${el.desc}`;
-      f.append(input, elem, trashBtn, description);
+
+      let dueDate = document.createElement('SPAN');
+      dueDate.classList.add(
+        'uk-width-1-1@s',
+        'uk-width-1-2@m',
+        'uk-width-2-3@l',
+        'uk-text-small'
+      );
+
+      dueDate.innerText = `${el.date}`;
+      
+      DD.append(description, dueDate);
+      f.append(input, elem, trashBtn, DD);
       ul.appendChild(f);
     });
     x.appendChild(ul);
@@ -150,6 +169,27 @@ const View = (() => {
 
     editDescDiv.appendChild(editDescInput);
 
+    let DW = document.createElement('DIV');
+    DW.className = 'uk-width-3-5';
+
+    let D = document.createElement('INPUT');
+    D.className = 'uk-input';
+    D.setAttribute('type', 'date');
+    D.setAttribute('id', 'date');
+
+    DW.appendChild(D);
+
+    let PW = document.createElement('DIV');
+    PW.className = 'uk-width-2-5';
+
+    let P = document.createElement('INPUT');
+    P.className = 'uk-radio';
+    P.setAttribute('type', 'radio');
+    P.setAttribute('id', 'priority');
+
+    PW.appendChild(P);
+
+
     let p = document.createElement('P');
     p.classList('uk-text-right');
 
@@ -166,7 +206,7 @@ const View = (() => {
 
     p.append(b, s);
 
-    editModal.append(editTitleDiv, editDescDiv, p);
+    editModal.append(editTitleDiv, editDescDiv, DW, PW, p);
 
     return editModal;
   };
