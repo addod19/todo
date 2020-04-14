@@ -42,7 +42,7 @@ const Controller = ((ui, data) => {
   const getTodo = (e) => {
     event.preventDefault();
     let td = ui.readInput();
-    let newTodo = data.todo(td.title, td.desc, td.date, (td.completed = false));
+    let newTodo = data.todo(td.title, td.desc, td.date, (td.completed = false), (td.priority = false));
     currentProject.todos.push(newTodo);
     ui.toggleFP(e, 'toggle-form');
     ui.render(currentProject);
@@ -103,6 +103,7 @@ const Controller = ((ui, data) => {
       ui.renderProjects(myProjects, currentProject);
       ui.highlightProj(e.target.id);
       ui.render(currentProject);
+      ui.renderModal();
     }
     if (e.target.id == 'save') {
       let td = ui.readEdit();
@@ -110,10 +111,12 @@ const Controller = ((ui, data) => {
         td.title,
         td.desc,
         td.date,
-        (td.completed = false)
+        (td.completed = false),
+        (td.priority = false)
       );
       currentProject.todos[currentLine] = newTodo;
       UIkit.modal('#edit-modal').hide();
+      localStorage.setItem('todos', JSON.stringify(td));
       ui.render(currentProject);
     }
   };

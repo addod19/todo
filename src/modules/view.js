@@ -34,14 +34,33 @@ const View = (() => {
       if (el.completed) input.setAttribute('checked', '');
 
       elem.innerHTML = ` ${el.title}`;
+
+      let DD = document.createElement('DIV'); // responsive container for both description and date hence DD
+      DD.className = 'uk-grid-collapse';
+      DD.setAttribute('uk-grid', '');
+
       let description = document.createElement('p');
       description.classList.add(
-        'uk-width-2-2',
+        'uk-width-1-1@s',
+        'uk-width-1-2@m',
+        'uk-width-1-3@l',
         'uk-text-small',
-        'uk-margin-left'
+        'uk-margin-right'
       );
       description.innerHTML = `${el.desc}`;
-      f.append(input, elem, trashBtn, description);
+
+      let dueDate = document.createElement('SPAN');
+      dueDate.classList.add(
+        'uk-width-1-1@s',
+        'uk-width-1-2@m',
+        'uk-width-2-3@l',
+        'uk-text-small'
+      );
+
+      dueDate.innerText = `${el.date}`;
+      
+      DD.append(description, dueDate);
+      f.append(input, elem, trashBtn, DD);
       ul.appendChild(f);
     });
     x.appendChild(ul);
@@ -92,9 +111,10 @@ const View = (() => {
   const readInput = () => {
     const title = document.getElementById('title').value;
     const desc = document.getElementById('desc').value;
-    // const date = document.getElementById('date').value;
+    const date = document.getElementById('date').value;
+    const priority = document.getElementById('priority').value;
     clearInputs();
-    return { title, desc };
+    return { title, desc, date, priority };
   };
 
   const readProject = () => {
@@ -106,8 +126,10 @@ const View = (() => {
   const readEdit = () => {
     const title = document.getElementById('edit-title').value;
     const desc = document.getElementById('edit-desc').value;
-    // const date = document.getElementById('date').value;
-    return { title, desc };
+    const date = document.getElementById('date').value;
+    const priority = document.getElementById('priority').value;
+
+    return { title, desc, date, priority };
   };
 
   const fillInputs = (title, desc) => {
@@ -115,6 +137,78 @@ const View = (() => {
     let d = document.getElementById('edit-desc');
     t.value = title;
     d.value = desc;
+  };
+
+  const renderModal = () => {
+    let editModal = document.createElement('DIV');
+    editModal.setAttribute('id', 'edit-modal');
+    editModal.setAttribute('uk-modal', '');
+    editModal.classList('uk-modal');
+
+    let ukModalDialog = document.createElement('DIV');
+    ukModalDialog.setAttribute('uk-grid', '');
+    ukModalDialog.classList('uk-modal-dialog', 'uk-modal-body', 'uk-margin-auto-vertical', 'uk-grid');
+
+    let editTitleDiv = document.createElement('DIV');
+    editTitleDiv.classList('uk-width-2-5', 'uk-first-column');
+
+    let editTitleInput = document.createElement('INPUT');
+    editTitleInput.setAttribute('type', 'text');
+    editTitleInput.classList('uk-input');
+    editTitleInput.setAttribute('id', 'edit-title');
+
+    editTitleDiv.appendChild(editTitleInput);
+
+    let editDescDiv = document.createElement('DIV');
+    editDescDiv.classList('uk-width-3-5');
+
+    let editDescInput = document.createElement('INPUT');
+    editDescInput.setAttribute('type', 'text');
+    editDescInput.classList('uk-input');
+    editDescInput.setAttribute('id', 'edit-desc');
+
+    editDescDiv.appendChild(editDescInput);
+
+    let DW = document.createElement('DIV');
+    DW.className = 'uk-width-3-5';
+
+    let D = document.createElement('INPUT');
+    D.className = 'uk-input';
+    D.setAttribute('type', 'date');
+    D.setAttribute('id', 'date');
+
+    DW.appendChild(D);
+
+    let PW = document.createElement('DIV');
+    PW.className = 'uk-width-2-5';
+
+    let P = document.createElement('INPUT');
+    P.className = 'uk-radio';
+    P.setAttribute('type', 'radio');
+    P.setAttribute('id', 'priority');
+
+    PW.appendChild(P);
+
+
+    let p = document.createElement('P');
+    p.classList('uk-text-right');
+
+    let b = document.createElement('BUTTON');
+    b.classList('uk-button', 'uk-button-default', 'uk-modal-close');
+    b.setAttribute('type', 'button');
+    b.innerText = 'Cancel';
+
+    let s = document.createElement('BUTTON');
+    s.classList('uk-button', 'uk-button-primary');
+    s.setAttribute('type', 'button');
+    s.setAttribute('id', 'save');
+    s.innerText = 'Save';
+
+    p.append(b, s);
+
+    editModal.append(editTitleDiv, editDescDiv, DW, PW, p);
+
+    return editModal;
   };
 
   return {
@@ -125,6 +219,7 @@ const View = (() => {
     readProject,
     render,
     renderProjects,
+    renderModal,
     toggleFP,
   };
 })();
