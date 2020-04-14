@@ -111,7 +111,12 @@
                 <div class="uk-width-2-5 uk-margin-top">
                   Priority:
                   <label>
-                    <input class="uk-radio" type="radio" id="priority-high" />
+                    <input
+                      class="uk-radio"
+                      type="radio"
+                      id="priority-high"
+                      name="priority"
+                    />
                     High
                   </label>
                   <label>
@@ -119,6 +124,7 @@
                       class="uk-radio"
                       type="radio"
                       id="priority-low"
+                      name="priority"
                       checked
                     />
                     Low
@@ -146,15 +152,32 @@
           <input class="uk-input" type="text" id="edit-desc" />
         </div>
         <div class="uk-width-2-5">
-          <input class="uk-input" type="date" placeholder="date" id="date" />
+          <input
+            class="uk-input"
+            type="date"
+            placeholder="date"
+            id="edit-date"
+          />
         </div>
-        <div class="uk-width-2-5">
+        <div class="uk-width-2-5 uk-margin-top">
+          Priority:
           <label>
-            <input class="uk-radio" type="radio" id="priority-high" />
+            <input
+              class="uk-radio"
+              type="radio"
+              id="edit-priority-high"
+              name="priority"
+            />
             High
           </label>
           <label>
-            <input class="uk-radio" type="radio" id="priority-low" />
+            <input
+              class="uk-radio"
+              type="radio"
+              id="edit-priority-low"
+              name="priority"
+              checked
+            />
             Low
           </label>
         </div>

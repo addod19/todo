@@ -4,7 +4,7 @@ const Data = (() => {
     desc = 'No description',
     date = new Date(),
     completed = false,
-    priority = false
+    priority
   ) => {
     return {
       title,

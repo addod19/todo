@@ -35,7 +35,7 @@ const View = (() => {
 
       elem.innerHTML = ` ${el.title}`;
 
-      let DD = document.createElement('DIV'); // responsive container for both description and date hence DD
+      let DD = document.createElement('div'); // responsive container for both description and date hence DD
       DD.className = 'uk-grid-collapse';
       DD.setAttribute('uk-grid', '');
 
@@ -50,15 +50,12 @@ const View = (() => {
       description.innerHTML = `${el.desc}`;
 
       let dueDate = document.createElement('SPAN');
-      dueDate.classList.add(
-        'uk-width-1-1@s',
-        'uk-width-1-2@m',
-        'uk-width-2-3@l',
-        'uk-text-small'
-      );
+      dueDate.classList.add('uk-width-1-1@s', 'uk-text-small');
 
-      dueDate.innerText = `${el.date}`;
-      
+      dueDate.innerText = `${el.date} - Priority: ${
+        el.priority ? 'High' : 'Low'
+      }`;
+
       DD.append(description, dueDate);
       f.append(input, elem, trashBtn, DD);
       ul.appendChild(f);
@@ -112,7 +109,7 @@ const View = (() => {
     const title = document.getElementById('title').value;
     const desc = document.getElementById('desc').value;
     const date = document.getElementById('date').value;
-    const priority = document.getElementById('priority').value;
+    const priority = document.getElementsByName('priority')[0].checked;
     clearInputs();
     return { title, desc, date, priority };
   };
@@ -126,17 +123,19 @@ const View = (() => {
   const readEdit = () => {
     const title = document.getElementById('edit-title').value;
     const desc = document.getElementById('edit-desc').value;
-    const date = document.getElementById('date').value;
-    const priority = document.getElementById('priority').value;
-
+    const date = document.getElementById('edit-date').value;
+    const priority = document.getElementsByName('priority')[2].checked;
+    console.log(priority);
     return { title, desc, date, priority };
   };
 
   const fillInputs = (title, desc) => {
     let t = document.getElementById('edit-title');
     let d = document.getElementById('edit-desc');
+    let date = document.getElementById('edit-date');
     t.value = title;
     d.value = desc;
+    date.value = date;
   };
 
   const renderModal = () => {
@@ -147,7 +146,12 @@ const View = (() => {
 
     let ukModalDialog = document.createElement('DIV');
     ukModalDialog.setAttribute('uk-grid', '');
-    ukModalDialog.classList('uk-modal-dialog', 'uk-modal-body', 'uk-margin-auto-vertical', 'uk-grid');
+    ukModalDialog.classList(
+      'uk-modal-dialog',
+      'uk-modal-body',
+      'uk-margin-auto-vertical',
+      'uk-grid'
+    );
 
     let editTitleDiv = document.createElement('DIV');
     editTitleDiv.classList('uk-width-2-5', 'uk-first-column');
@@ -188,7 +192,6 @@ const View = (() => {
     P.setAttribute('id', 'priority');
 
     PW.appendChild(P);
-
 
     let p = document.createElement('P');
     p.classList('uk-text-right');
