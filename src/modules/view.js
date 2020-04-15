@@ -1,3 +1,7 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-return-assign */
+/* eslint-disable no-param-reassign */
+
 const View = (() => {
   const render = (project) => {
     // first remove the old list
@@ -52,9 +56,7 @@ const View = (() => {
       const dueDate = document.createElement('SPAN');
       dueDate.classList.add('uk-width-1-1@s', 'uk-text-small');
 
-      dueDate.innerText = `${el.date} - Priority: ${
-        el.priority ? 'High' : 'Low'
-      }`;
+      dueDate.innerText = `${el.date} - Priority: ${el.priority ? 'High' : 'Low'}`;
 
       DD.append(description, dueDate);
       f.append(input, elem, trashBtn, DD);
