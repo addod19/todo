@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 
-import '../node_modules/uikit';
 import '../dist/css/main.css';
 import Data from './modules/data';
 import View from './modules/view';
@@ -134,18 +133,18 @@ const Controller = ((ui, data) => {
   // first render then attach Listeners
   document
     .getElementById('toggle')
-    .addEventListener('click', (e) => ui.toggleFP(e, 'toggle-form'));
+    .addEventListener('click', e => ui.toggleFP(e, 'toggle-form'));
   document.getElementById('submit').addEventListener('click', getTodo);
   document
     .getElementById('addProject')
-    .addEventListener('click', (e) => ui.toggleFP(e, 'showInput'));
+    .addEventListener('click', e => ui.toggleFP(e, 'showInput'));
   document.getElementById('project').addEventListener('keydown', getProject);
   document.getElementById('save').addEventListener('click', handleClick);
   // Try to attach eventListeners to all todos
   const todoList = document.getElementById('list');
   todoList.addEventListener('click', handleClick);
   const todoText = document.getElementsByClassName('todo-text');
-  [...todoText].forEach((text) => text.addEventListener('click', handleClick));
+  [...todoText].forEach(text => text.addEventListener('click', handleClick));
   const projectList = document.getElementById('projects');
   projectList.addEventListener('click', handleClick);
 

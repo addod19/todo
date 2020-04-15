@@ -104,7 +104,7 @@ const View = (() => {
 
   const clearInputs = () => {
     const inputs = document.querySelectorAll('input');
-    inputs.forEach((input) => (input.value = ''));
+    inputs.forEach(input => (input.value = ''));
   };
 
   const readInput = () => {
