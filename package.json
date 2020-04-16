@@ -1,0 +1,34 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "Applying the concepts of Single Responsibility and Loosely Coupled Objects",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/addod19/todo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/addod19/todo/issues"
+  },
+  "homepage": "https://github.com/addod19/todo#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "css-loader": "^3.4.2",
+    "date-fns": "^2.11.1",
+    "eslint-config-airbnb": "^18.1.0",
+    "style-loader": "^1.1.3",
+    "uikit": "^3.3.7"
+  }
+}
