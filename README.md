@@ -39,15 +39,17 @@
 
 ## Live Demo
 
-[Live Demo Link](https://raw.githack.com/addod19/todo/dist/index.html)
+[Live Demo Link](http://macexperts.gr/todo/dist/)
 
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
 
 1. `git clone https://github.com/addod19/todo.git`
-2. Open the index.html with your favorite browser
-3. Enjoy the game
+2. `cd todo`
+3. `git checkout modal`
+4. `npm i`
+5. Use live server on VSCode to open the index.html with your favorite browser
 
 ### Prerequisites
 
