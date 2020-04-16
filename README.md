@@ -39,7 +39,7 @@
 
 ## Live Demo
 
-[Live Demo Link](https://raw.githack.com/addod19/todo/dist/index.html)
+[Live Demo Link](http://macexperts.gr/todo/dist/)
 
 ## Getting Started
 
