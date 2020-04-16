@@ -20,15 +20,25 @@
 
 ### Desktop/Laptoop device
 
-<img src="/dist/images/todo2.PNG" alt="">
+<img src="/dist/images/l.PNG" alt="">
+
+### With pop up modal
+<img src="/dist/images/lm.PNG" alt="">
+
 
 ### Tables device
 
-<img src="/dist/images/todo1.PNG" alt="">
+<img src="/dist/images/m.PNG" alt="">
+
+### With pop up modal
+<img src="/dist/images/mm.PNG" alt="">
 
 ### Mobile device
 
-<img src="/dist/images/todo.PNG" alt="">
+<img src="/dist/images/s.PNG" alt="">
+
+### With pop up modal
+<img src="/dist/images/sm.PNG" alt="">
 
 ## Built With
 
@@ -49,7 +59,8 @@ To get a local copy up and running follow these simple example steps.
 2. `cd todo`
 3. `git checkout modal`
 4. `npm i`
-5. Use live server on VSCode to open the index.html with your favorite browser
+5. `npx webpack --watch`
+6. Use live server on VSCode to open the index.html with your favorite browser
 
 ### Prerequisites
 
