@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 const View = (() => {
   const render = (project) => {
     // first remove the old list
@@ -17,9 +18,7 @@ const View = (() => {
 
       const elem = document.createElement('a');
       elem.className = 'todo-text';
-      el.completed
-        ? elem.setAttribute('style', 'text-decoration:line-through')
-        : elem.removeAttribute('style');
+      el.completed ? elem.setAttribute('style', 'text-decoration:line-through') : elem.removeAttribute('style');
       elem.setAttribute('href', '#edit-modal');
       elem.setAttribute('uk-toggle', '');
 
@@ -102,7 +101,7 @@ const View = (() => {
 
   const clearInputs = () => {
     const inputs = document.querySelectorAll('input');
-    inputs.forEach((input) => (input.value = ''));
+    inputs.forEach((input) => { (input.value = ''); });
   };
 
   const readInput = () => {
