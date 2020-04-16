@@ -1,5 +1,3 @@
-/* eslint-disable no-unexpected-multiline */
-/* eslint-disable no-unused-vars */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};

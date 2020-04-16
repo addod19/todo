@@ -20,15 +20,24 @@
 
 ### Desktop/Laptoop device
 
-<img src="/dist/images/todo2.PNG" alt="">
+<img src="/dist/images/l.PNG" alt="">
+
+### with pop up modal
+<img src="/dist/images/lm.PNG" alt="">
 
 ### Tables device
 
-<img src="/dist/images/todo1.PNG" alt="">
+<img src="/dist/images/m.PNG" alt="">
+
+### with pop up modal
+<img src="/dist/images/mm.PNG" alt="">
 
 ### Mobile device
 
-<img src="/dist/images/todo.PNG" alt="">
+<img src="/dist/images/s.PNG" alt="">
+
+### with pop up modal
+<img src="/dist/images/sm.PNG" alt="">
 
 ## Built With
 
