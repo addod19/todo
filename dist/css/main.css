@@ -1,0 +1,14 @@
+nav {
+  background-color: #244;
+}
+.logo-icon {
+  margin: 25px -15px 0 20px;
+}
+.toggle-form,
+.toggleProject {
+  display: none;
+}
+.user-click:hover {
+  font-weight: 700;
+  cursor: pointer;
+}

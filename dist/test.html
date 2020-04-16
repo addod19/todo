@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="./css/main.css" />
+    <link
+      rel="stylesheet"
+      href="../node_modules/uikit/dist/css/uikit.min.css"
+    />
+    <script src="../node_modules/uikit/dist/js/uikit.min.js"></script>
+    <script src="../node_modules/uikit//dist/js/uikit-icons.min.js"></script>
+    <title>Todo list</title>
+  </head>
+
+  <body>
+    <div id="content">
+      <div
+        uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky"
+        class="uk-sticky uk-sticky-fixed"
+        style="position: fixed; top: 0px; width: 993px;"
+      >
+        <nav class="uk-navbar-container uk-navbar" uk-navbar="">
+          <i class="logo-icon uk-icon" uk-icon="icon: calendar; ratio: 1.5"></i>
+          <a class="uk-navbar-item uk-logo" href="#">ToDos!</a>
+          <div class="uk-navbar-left">
+            <ul class="uk-navbar-nav">
+              <li class="uk-active"><a href=""></a></li>
+              <li class="uk-parent"><a href=""></a></li>
+              <li><a href=""></a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div
+        class="uk-sticky-placeholder"
+        style="height: 80px; margin: 0px;"
+      ></div>
+
+      <div class="uk-grid-collapse uk-grid" uk-grid="">
+        <div
+          class="uk-width-1-1@s uk-width-1-3@m uk-width-1-3@l uk-first-column"
+        >
+          <div
+            class="uk-card uk-card-default uk-card-body uk-text-bold"
+            id="projects"
+          >
+            <a href="" uk-icon="icon: grid" class="uk-icon"></a>
+            Projects
+            <a
+              href=""
+              class="uk-align-right uk-icon"
+              uk-icon="icon: plus-circle"
+              id="addProject"
+            ></a>
+            <hr class="uk-divider-icon" />
+            <div id="showInput" class="toggle-form">
+              <div class="uk-width-2-2">
+                <input
+                  class="uk-input"
+                  type="text"
+                  placeholder="Enter Project name"
+                  id="project"
+                  autofocus=""
+                />
+              </div>
+            </div>
+
+            <ul class="uk-text-normal uk-list uk-list-divider">
+              <li class="user-click uk-text-bold">
+                My first project<span
+                  uk-icon="icon: triangle-right; ratio: 1.3"
+                  class="uk-align-right"
+                ></span>
+              </li>
+              <li class="user-click">
+                Dummy project
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="uk-width-1-1@s uk-width-2-3@m uk-width-2-3@l">
+          <div
+            class="uk-card uk-card-default uk-card-body uk-text-bold"
+            id="list"
+          >
+            <span id="projectName">My first project</span>
+            <a
+              href=""
+              class="uk-align-right uk-icon"
+              uk-icon="icon: plus-circle"
+              id="toggle"
+            ></a>
+            <hr class="uk-divider-icon" />
+            <div class="toggle-form" id="toggle-form">
+              <form class="uk-grid-small uk-grid" uk-grid="">
+                <div class="uk-width-2-5 uk-first-column">
+                  <input
+                    class="uk-input"
+                    type="text"
+                    placeholder="title"
+                    id="title"
+                  />
+                </div>
+                <div class="uk-width-2-5">
+                  <input
+                    class="uk-input"
+                    type="text"
+                    placeholder="description"
+                    id="desc"
+                  />
+                </div>
+
+                <div class="uk-width-1-5">
+                  <button class="uk-button uk-button-primary" id="submit">
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <ul class="uk-text-normal uk-list uk-list-striped">
+              <li id="1">
+                <input type="checkbox" class="uk-checkbox" />
+                <a href="#edit-modal" uk-toggle class="todo-text"
+                  >Fix the edit form</a
+                >
+                <button
+                  class="uk-align-right trash uk-icon"
+                  uk-icon="icon: trash"
+                ></button>
+                <p class="uk-width-2-2 uk-text-small uk-margin-left">
+                  Here is the description
+                </p>
+              </li>
+              <li id="2">
+                <input type="checkbox" class="uk-checkbox" /><span
+                  class="user-click"
+                >
+                  Garbage Out today</span
+                ><button
+                  class="uk-align-right trash uk-icon"
+                  uk-icon="icon: trash"
+                ></button>
+              </li>
+              <li id="3">
+                <input type="checkbox" class="uk-checkbox" /><span
+                  class="user-click"
+                >
+                  Wash the car</span
+                ><button
+                  class="uk-align-right trash uk-icon"
+                  uk-icon="icon: trash"
+                ></button>
+              </li>
+              <li id="4">
+                <input type="checkbox" class="uk-checkbox" /><span
+                  class="user-click"
+                >
+                  Take kids to schools24</span
+                ><button
+                  class="uk-align-right trash uk-icon"
+                  uk-icon="icon: trash"
+                ></button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- here is the edit-modal  -->
+    <div id="edit-modal" uk-modal>
+      <div
+        class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical"
+        uk-grid
+      >
+        <h3 class="uk-modal-title uk-width-1-1">Edit ToDo</h3>
+        <!-- <p>
+          Here is the description. Lorem ipsum dolor sit amet, consectetur
+          adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua.
+        </p> -->
+        <div class="uk-width-2-5 uk-first-column">
+          <input class="uk-input" type="text" id="edit-title" />
+        </div>
+        <div class="uk-width-3-5">
+          <input class="uk-input" type="text" id="edit-desc" />
+        </div>
+        <p class="uk-text-right">
+          <button
+            class="uk-button uk-button-default uk-modal-close"
+            type="button"
+          >
+            Cancel
+          </button>
+          <button class="uk-button uk-button-primary" type="button">
+            Save
+          </button>
+        </p>
+      </div>
+    </div>
+
+    <!-- <script src="main.js" type="module"></script> -->
+  </body>
+</html>
