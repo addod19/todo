@@ -49,7 +49,7 @@
 
 ## Live Demo
 
-[Live Demo Link](http://macexperts.gr/todo/dist/)
+[Live Demo Link](https://addod19.github.io/todo/)
 
 ## Getting Started
 
