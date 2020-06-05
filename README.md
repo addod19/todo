@@ -42,8 +42,8 @@
 
 ## Built With
 
-- HTML,
-- CSS,
+- HTML
+- CSS
 - Javascript es6
 - UI Kit for styling and responsiveness
 
