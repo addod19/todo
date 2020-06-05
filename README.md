@@ -1,6 +1,6 @@
 # Todo App
 
-> Applying the concepts of Single Responsibility and Loosely Coupled Objects while building our todo app
+> Applying the concepts of Single Responsibility and Loosely Coupled Objects while building our todo app.
 
 ## Features
 
