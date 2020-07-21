@@ -18,11 +18,11 @@
 
 ## Screenshots
 
-### Desktop/Laptoop device
+### Desktop/Laptop device
 
 <img src="/dist/images/l.PNG" alt="">
 
-### With pop up modal
+### With pop up model
 <img src="/dist/images/lm.PNG" alt="">
 
 
