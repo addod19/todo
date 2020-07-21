@@ -30,14 +30,14 @@
 
 <img src="/dist/images/m.PNG" alt="">
 
-### With pop up modal
+### With pop up model
 <img src="/dist/images/mm.PNG" alt="">
 
 ### Mobile device
 
 <img src="/dist/images/s.PNG" alt="">
 
-### With pop up modal
+### With pop up model
 <img src="/dist/images/sm.PNG" alt="">
 
 ## Built With
